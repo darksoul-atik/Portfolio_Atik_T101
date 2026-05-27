@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "SFMono-Regular", "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+  --radius-xl: 2rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #050711;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #050711;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: var(--font-sans);
+  text-rendering: geometricPrecision;
+}
+
+body::selection {
+  background: rgba(109, 232, 255, 0.35);
+  color: white;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8;
+  }
+
+  .glass-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.115), rgba(255, 255, 255, 0.035)),
+      rgba(255, 255, 255, 0.035);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(22px);
+  }
+
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at top left, rgba(109, 232, 255, 0.16), transparent 32%),
+      radial-gradient(circle at bottom right, rgba(169, 134, 255, 0.15), transparent 30%);
+    opacity: 0.9;
+  }
+
+  .glass-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .text-gradient {
+    background: linear-gradient(90deg, #ffffff 0%, #9ff3ff 32%, #bea8ff 62%, #ff9de3 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+
+  .premium-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(#080b18, #080b18) padding-box,
+      linear-gradient(135deg, rgba(109, 232, 255, 0.55), rgba(169, 134, 255, 0.35), rgba(255, 106, 213, 0.45)) border-box;
+  }
+
+  .skill-pill {
+    @apply rounded-full border border-white/10 bg-white/[0.06] px-5 py-2.5 text-sm font-medium text-white/75 shadow-glow backdrop-blur-md transition duration-300 hover:border-cyanGlow/40 hover:bg-cyanGlow/10 hover:text-white;
+  }
+
+  .focus-ring {
+    @apply outline-none ring-0 transition focus-visible:ring-2 focus-visible:ring-cyanGlow focus-visible:ring-offset-2 focus-visible:ring-offset-ink;
+  }
+}
+
+.noise-layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.55'/%3E%3C/svg%3E");
+}
+
+.hero-visual {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.orbit-ring {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* .orbit-dot {
+  position: absolute;
+  left: 50%;
+  top: -5px;
+  height: 10px;
+  width: 10px;
+  border-radius: 999px;
+  background: #6de8ff;
+  box-shadow: 0 0 28px rgba(109, 232, 255, 0.85);
+} */
+
+.project-card {
+  transform-style: preserve-3d;
+}
+
+.project-card::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(109, 232, 255, 0.2), transparent 35%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+.timeline-line {
+  background: linear-gradient(to bottom, rgba(109, 232, 255, 0), rgba(109, 232, 255, 0.65), rgba(169, 134, 255, 0));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
