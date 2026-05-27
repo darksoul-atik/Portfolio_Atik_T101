@@ -1,6 +1,6 @@
 # Atik Shahrear Ananto — Portfolio 2026
 
-A premium developer portfolio built using **Next.js**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **GSAP**.
+A semi vibecoding+self coding portfolio built using **Next.js**, **TypeScript**, **Tailwind CSS**, **Framer Motion**, and **GSAP**.
 
 This project showcases modern frontend engineering, smooth interaction design, responsive layouts, and full-stack development experience through a futuristic UI system focused on performance and usability.
 
