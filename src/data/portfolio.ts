@@ -253,6 +253,7 @@ export const experience = [
     mode: "Dhaka, Bangladesh",
     details: [
       "CGPA: 3.64/4.00.",
+      "Major: Data Science.",
       "Relevant coursework: Data Structures & Algorithms, Database Systems, Operating Systems, Computer Networks, Software Engineering, Machine Learning, and Computer Vision.",
     ],
   },
