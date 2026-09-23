@@ -12,12 +12,15 @@ const config: Config = {
         mono: ["var(--font-mono)", "JetBrains Mono", "monospace"]
       },
       colors: {
-        ink: "#050711",
-        panel: "rgba(255, 255, 255, 0.06)",
-        line: "rgba(255, 255, 255, 0.12)",
-        cyanGlow: "#6de8ff",
-        violetGlow: "#a986ff",
-        pinkGlow: "#ff6ad5"
+        ink: "rgb(var(--color-ink-rgb) / <alpha-value>)",
+        panel: "var(--color-panel)",
+        line: "var(--color-line)",
+        cyanGlow: "rgb(var(--color-cyan-glow-rgb) / <alpha-value>)",
+        violetGlow: "rgb(var(--color-violet-glow-rgb) / <alpha-value>)",
+        pinkGlow: "rgb(var(--color-pink-glow-rgb) / <alpha-value>)",
+        "cyan-glow": "rgb(var(--color-cyan-glow-rgb) / <alpha-value>)",
+        "violet-glow": "rgb(var(--color-violet-glow-rgb) / <alpha-value>)",
+        "pink-glow": "rgb(var(--color-pink-glow-rgb) / <alpha-value>)"
       },
       boxShadow: {
         glow: "0 0 40px rgba(109, 232, 255, 0.18)",
