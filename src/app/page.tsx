@@ -1129,7 +1129,10 @@ function HeroVisual() {
         />
       </div>
 
-      <div className="absolute left-1/2 top-1/2 w-[95%] xs:w-[92%] sm:w-[88%] md:w-[78%] max-w-[720px] -translate-x-1/2 -translate-y-1/2">
+      <div
+        className="absolute left-1/2 top-1/2 w-[95%] xs:w-[92%] sm:w-[88%] md:w-[78%] max-w-[720px] -translate-x-1/2 -translate-y-1/2"
+        onMouseLeave={() => setHovered(false)}
+      >
         {/* Code card */}
         <div
           className={`rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-black/40 p-3 sm:p-4 md:p-5 shadow-card backdrop-blur-2xl transition-all duration-300 ${
@@ -1179,13 +1182,13 @@ function HeroVisual() {
 
             {/* Interactive hover line */}
             <p
-              className="pl-3 sm:pl-4 cursor-pointer"
+              className="pl-3 sm:pl-4 cursor-pointer py-0.5 rounded hover:bg-cyanGlow/10 transition"
               onMouseEnter={() => setHovered(true)}
-              onMouseLeave={() => setHovered(false)}
+              onClick={() => setHovered((prev) => !prev)}
             >
-              previewCard:{" "}
+              myPhoto:{" "}
               <span className="text-cyanGlow animate-pulse">
-                &quot;Hover to view interactive card&quot;
+                &quot;Hover to reveal my face&quot;
               </span>
             </p>
 
@@ -1199,8 +1202,8 @@ function HeroVisual() {
         <div
           className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${
             hovered
-              ? "opacity-100 scale-100 pointer-events-auto"
-              : "opacity-0 scale-95 pointer-events-none"
+              ? "opacity-100 scale-100 pointer-events-auto z-20"
+              : "opacity-0 scale-95 pointer-events-none -z-10"
           }`}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
