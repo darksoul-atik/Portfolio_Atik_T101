@@ -4,7 +4,9 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 type SectionHeaderProps = {
   eyebrow: string;
@@ -20,24 +22,28 @@ export function SectionHeader({ eyebrow, title, description }: SectionHeaderProp
     if (!el) return;
 
     const children = Array.from(el.children) as HTMLElement[];
-    gsap.set(children, { opacity: 0, y: 20, filter: "blur(8px)" });
+    // Use CSS transforms and opacity only
+    gsap.set(children, { opacity: 0, y: 24 });
 
     const trigger = ScrollTrigger.create({
       trigger: el,
-      start: "top 90%",
+      start: "top 92%",
+      once: true,
       onEnter: () => {
         gsap.to(children, {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
           duration: 0.7,
-          stagger: 0.1,
-          ease: "power3.out",
+          stagger: 0.08,
+          ease: "power2.out",
+          clearProps: "transform,opacity",
         });
       },
     });
 
-    return () => trigger.kill();
+    return () => {
+      trigger.kill();
+    };
   }, []);
 
   return (

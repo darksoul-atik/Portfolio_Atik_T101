@@ -4,7 +4,9 @@ import { ReactNode, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export function Reveal({
   children,
@@ -21,24 +23,28 @@ export function Reveal({
     const el = ref.current;
     if (!el) return;
 
-    gsap.set(el, { opacity: 0, y: 54, filter: "blur(14px)" });
+    // Use CSS transform (y) and opacity only for smooth compositor rendering
+    gsap.set(el, { opacity: 0, y: 32 });
 
     const trigger = ScrollTrigger.create({
       trigger: el,
-      start: "top 90%",
+      start: "top 92%",
+      once: true,
       onEnter: () => {
         gsap.to(el, {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
-          duration: 1,
+          duration: 0.8,
           delay,
-          ease: "power3.out",
+          ease: "power2.out",
+          clearProps: "transform,opacity",
         });
       },
     });
 
-    return () => trigger.kill();
+    return () => {
+      trigger.kill();
+    };
   }, [delay]);
 
   return (
