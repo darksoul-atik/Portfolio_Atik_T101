@@ -452,7 +452,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
       WebkitTextFillColor: 'rgba(255,255,255,0.55)',
     }}
   >
-    B.Sc. CSE @ East West University · Trainee AI & Software Engineer at SugarClass Ltd Hong Kong. · Focused on MERN, FastAPI, and agentic AI workflows. Open to internship and junior engineering roles.
+    B.Sc. CSE @ East West University · Software Engineer at SugarClass Ltd Hong Kong · Focused on MERN, FastAPI, and agentic AI engineering workflows.
   </p>
 </div>
 

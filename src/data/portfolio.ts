@@ -1,6 +1,6 @@
 export const profile = {
   name: "Atik Shahrear Ananto",
-  role: "Software Engineer · MERN & AI Enthusiast",
+  role: "Software Engineer · Full-Stack & AI",
   location: "Dhaka, Bangladesh",
   email: "anantoshahrear10@gmail.com",
   phone: "+8801577227127",
@@ -8,21 +8,21 @@ export const profile = {
   github: "https://github.com/darksoul-atik",
   linkedin: "https://linkedin.com/in/atik-shahrear-186-bd",
   resume: "/resume-atik-shahrear-ananto.pdf",
-  headline: "Building modern web experiences with code, creativity & motion.",
+  headline: "Building high-performance web products with clean architecture & modern tooling.",
   subheadline:
-    "Computer Science and Engineering student focused on full-stack MERN products, scalable APIs, secure authentication, responsive interfaces, and AI-assisted software engineering workflows.",
-  availability: "Open to internship & entry-level software engineering roles",
+    "Computer Science and Engineering graduate specialized in full-stack MERN engineering, scalable RESTful APIs, robust authentication, and AI-accelerated development workflows.",
+  availability: "Available for Software Engineering & Full-Stack roles",
 };
 
 export const stats = [
-  { value: "3.64", label: "CGPA / 4.00" },
+  { value: "Full Stack", label: "Web & API Architecture" },
   { value: "Fast", label: "Learner & Adaptable" },
   { value: "MERN", label: "Core Stack" },
-  { value: "AI", label: "Tech Enthusiast and Agenitc Tool User" },
+  { value: "AI", label: "Tech Enthusiast and Agentic Tool User" },
   { value: "ML", label: "Data-Driven Modeling" },
   { value: "API", label: "RESTful System Design" },
-  { value: "R&D", label: "Interest in Research Papers" },
-  { value: "Hybrid", label: "Remote and Onsite Work Experience" },
+  { value: "R&D", label: "Applied Machine Learning Research" },
+  { value: "Hybrid", label: "Remote & On-site Experience" },
 ];
 
 export const research = [
@@ -33,20 +33,18 @@ export const research = [
     venue: "Dhaka International University, Bangladesh",
     date: "May 07–09, 2026",
     paperId: "609",
-    // authors: "Antar Chandra Das, Sharafat Ahmed, Hrikesh Kumar Hazra, Atik Shahrear Ananto, Fahad Ahammed",
     status: "Accepted",
     publisher: "Atlantis Press · Taylor & Francis",
   },
   {
-    type: "Conference Paper",
+    type: "Research Project",
     title: "TRACE-AI: A Leakage-Safe Explainable Machine Learning Framework for Digital Forensic Trace Anomaly Detection",
-    conference: "TBA",
-    venue: "TBA",
-    date: "TBA",
-    paperId: "TBA",
-    // authors: "Antar Chandra Das, Sharafat Ahmed, Hrikesh Kumar Hazra, Atik Shahrear Ananto, Fahad Ahammed",
+    conference: "Manuscript in Preparation",
+    venue: "Peer-reviewed submission in progress",
+    date: "2026",
+    paperId: "TRACE-2026",
     status: "Ongoing",
-    publisher: "TBA",
+    publisher: "Under Review",
   }
 ];
 
@@ -64,12 +62,12 @@ export const navItems = [
 export const skillGroups = [
   {
     title: "Frontend Engineering",
-    caption: "Interfaces that feel fast, expressive, and clean.",
+    caption: "Responsive, accessible interfaces built for speed and maintainability.",
     skills: [
       "React.js",
       "TypeScript",
       "TanStack Query",
-      "Framer Motion",
+      "GSAP",
       "Tailwind CSS",
       "DaisyUI",
       "Axios",
@@ -79,7 +77,7 @@ export const skillGroups = [
   },
   {
     title: "Backend & APIs",
-    caption: "Secure API layers and practical full-stack systems.",
+    caption: "Secure authentication, RESTful services, and structured backend architecture.",
     skills: [
       "Node.js",
       "Express.js",
@@ -92,7 +90,7 @@ export const skillGroups = [
   },
   {
     title: "AI & Data Engineering",
-    caption: "Machine learning fundamentals, data analysis, and AI-accelerated development workflows.",
+    caption: "Machine learning modeling, computer vision, and AI-assisted workflows.",
     skills: [
       "Python",
       "NumPy",
@@ -109,7 +107,7 @@ export const skillGroups = [
   },
   {
     title: "Database & Deployment",
-    caption: "From schema decisions to shipping production builds.",
+    caption: "Data persistence, schema design, and production deployment environments.",
     skills: [
       "MongoDB",
       "PostgreSQL",
@@ -129,7 +127,6 @@ export const skillCloud = [
   "React",
   "Next.js",
   "TypeScript",
-  "Framer Motion",
   "GSAP",
   "Tailwind",
   "Node.js",
@@ -159,7 +156,7 @@ export const projects = [
     github: "https://github.com/darksoul-atik/Folio_pdf2md_Client",
 
     description:
-      "A conversion platform that turns PDFs into structured Markdown with adaptive heading detection, table extraction, OCR fallback, cleanup options, preview modes, history, and theme support.",
+      "A conversion platform that turns complex PDFs into structured Markdown with adaptive heading detection, table extraction, OCR fallback, cleanup options, preview modes, history, and theme support.",
 
     stack: [
       "React",
@@ -175,21 +172,21 @@ export const projects = [
     highlights: [
       "Adaptive heading and table extraction pipeline",
       "4-mode preview panel with conversion stats",
-      "Firebase Hosting frontend and Render backend",
+      "Firebase Hosting frontend with Render-deployed backend",
     ],
   },
 
   {
     title: "HobbyHub",
     label: "Community Platform",
-    type: "MERN product",
+    type: "Full-stack MERN Application",
     image: "/hobbyhub.jpg",
 
     live: "https://hobby-hub-ea532.web.app/",
     github: "https://github.com/darksoul-atik/B11-HobbyHub-Client",
 
     description:
-      "A community platform with role-based access, secure REST APIs, OAuth login, and responsive user flows for hobby-based communities.",
+      "A community platform with role-based access control, secure REST APIs, OAuth login, and responsive user flows designed for hobby-centric community collaboration.",
 
     stack: [
       "MongoDB",
@@ -201,23 +198,23 @@ export const projects = [
     ],
 
     highlights: [
-      "Role-based access control",
-      "Secure API architecture",
-      "Firebase-hosted responsive frontend",
+      "Role-based access control and protected routes",
+      "Secure REST API architecture with JWT authentication",
+      "Responsive frontend hosted on Firebase",
     ],
   },
 
   {
     title: "EventFlow",
     label: "Event Discovery Platform",
-    type: "Interactive discovery app",
+    type: "Interactive Event Portal",
     image: "/eventflow.jpg",
 
     live: "https://event-flow-45bc2.web.app/",
     github: "https://github.com/darksoul-atik/Event-Flow-V1",
 
     description:
-      "A responsive event discovery experience with dynamic filtering, calendar visualization, and Google Sign-In authentication.",
+      "A responsive event discovery application featuring multi-criteria filtering, calendar-based scheduling visualization, and Google Sign-In authentication.",
 
     stack: [
       "React",
@@ -228,9 +225,9 @@ export const projects = [
     ],
 
     highlights: [
-      "Dynamic event filtering",
-      "Calendar-based visualization",
-      "Google Sign-In authentication",
+      "Dynamic multi-parameter event filtering",
+      "Interactive calendar-based event scheduling",
+      "Google Sign-In authentication integration",
     ],
   },
 ];
@@ -242,8 +239,8 @@ export const experience = [
     period: "March 2026 - Present",
     mode: "Remote",
     details: [
-      "Worked with Agentic AI systems and AI-assisted tools including Claude Code, OpenCode, and OpenAI Codex.",
-      "Designed scalable system architecture and software development pipelines in a remote-first Git workflow.",
+      "Building full-stack web applications and AI-augmented developer tooling utilizing Claude Code, OpenCode, and OpenAI Codex.",
+      "Designing scalable API integrations and engineering workflows in a distributed, remote-first Git environment.",
     ],
   },
   {
@@ -252,8 +249,7 @@ export const experience = [
     period: "2022 - 2026",
     mode: "Dhaka, Bangladesh",
     details: [
-      "CGPA: 3.64/4.00.",
-      "Major: Data Science.",
+      "Graduated with CGPA 3.64 / 4.00 (Major: Data Science).",
       "Relevant coursework: Data Structures & Algorithms, Database Systems, Operating Systems, Computer Networks, Software Engineering, Machine Learning, and Computer Vision.",
     ],
   },
@@ -271,18 +267,18 @@ export const experience = [
 
 export const services = [
   {
-    title: "Animated Frontend Builds",
+    title: "Performant Web Applications",
     description:
-      "Responsive landing pages and dashboards with Framer Motion, GSAP, Tailwind CSS, and polished micro-interactions.",
+      "Modern, responsive web applications built with Next.js, React, TypeScript, and GSAP with smooth transitions and clean accessibility.",
   },
   {
-    title: "Full-stack MERN Features",
+    title: "Full-Stack & API Development",
     description:
-      "Secure authentication, CRUD flows, REST APIs, database integration, deployment, and API-driven UI states.",
+      "Secure authentication flows, RESTful APIs, relational/NoSQL databases, and robust server architecture using Node.js, Express, and FastAPI.",
   },
   {
-    title: "AI-assisted Engineering",
+    title: "AI & Automation Workflows",
     description:
-      "Development pipelines using AI coding tools, code review habits, architecture planning, and productivity automation.",
+      "Integrating applied machine learning pipelines, LLM utilities, and agentic development tools to accelerate delivery and automate workflows.",
   },
 ];
