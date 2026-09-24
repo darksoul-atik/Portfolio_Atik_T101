@@ -24,6 +24,10 @@ import {
   SiAxios,
   SiReactquery,
   SiDaisyui,
+  SiZod,
+  SiPrisma,
+  SiPostman,
+  SiHoppscotch,
 } from "react-icons/si";
 
 import { FaServer, FaDatabase, FaCloud, FaCode } from "react-icons/fa";
@@ -101,6 +105,8 @@ const skillIconMap: Record<string, React.ReactNode> = {
   GSAP: <FaCode />,
   "TanStack Query": <SiReactquery />,
   DaisyUI: <SiDaisyui />,
+  Zod: <SiZod />,
+  zod: <SiZod />,
 
   // Backend & APIs
   "Nest.js": <SiNestjs />,
@@ -111,6 +117,10 @@ const skillIconMap: Record<string, React.ReactNode> = {
   "Express.js": <SiExpress />,
   FastAPI: <SiFastapi />,
   "RESTful API Design": <TbApi />,
+  Postman: <SiPostman />,
+  postman: <SiPostman />,
+  Hoppscotch: <SiHoppscotch />,
+  hoppscotch: <SiHoppscotch />,
   JWT: <FaServer />,
   "Firebase Auth": <SiFirebase />,
   "System Design": <FaServer />,
@@ -130,6 +140,9 @@ const skillIconMap: Record<string, React.ReactNode> = {
   AntiGravity: <Sparkles />,
 
   // Database & Deployment
+  Prisma: <SiPrisma />,
+  prisma: <SiPrisma />,
+  "Prisma ORM": <SiPrisma />,
   MongoDB: <SiMongodb />,
   PostgreSQL: <SiPostgresql />,
   NeonDB: <SiPostgresql />,

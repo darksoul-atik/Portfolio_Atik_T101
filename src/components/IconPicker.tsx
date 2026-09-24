@@ -63,6 +63,10 @@ import {
   SiHtml5,
   SiCss,
   SiNestjs,
+  SiZod,
+  SiPrisma,
+  SiPostman,
+  SiHoppscotch,
 } from "react-icons/si";
 
 export interface IconOption {
@@ -100,12 +104,15 @@ export const ICON_CATALOG: IconOption[] = [
   { id: "SiHtml5", label: "HTML5", category: "Tech", icon: <SiHtml5 /> },
   { id: "SiCss", label: "CSS3", category: "Tech", icon: <SiCss /> },
   { id: "SiGraphql", label: "GraphQL", category: "Tech", icon: <SiGraphql /> },
+  { id: "SiZod", label: "Zod", category: "Tech", icon: <SiZod /> },
 
   // Backend & Cloud
   { id: "SiNodedotjs", label: "Node.js", category: "Backend", icon: <SiNodedotjs /> },
   { id: "SiNestjs", label: "NestJS", category: "Backend", icon: <SiNestjs /> },
   { id: "SiExpress", label: "Express.js", category: "Backend", icon: <SiExpress /> },
   { id: "SiFastapi", label: "FastAPI", category: "Backend", icon: <SiFastapi /> },
+  { id: "SiPostman", label: "Postman", category: "Backend", icon: <SiPostman /> },
+  { id: "SiHoppscotch", label: "Hoppscotch", category: "Backend", icon: <SiHoppscotch /> },
   { id: "Server", label: "Server Systems", category: "Backend", icon: <Server /> },
   { id: "Cloud", label: "Cloud Services", category: "Backend", icon: <Cloud /> },
   { id: "Terminal", label: "CLI / Terminal", category: "Backend", icon: <Terminal /> },
@@ -118,6 +125,7 @@ export const ICON_CATALOG: IconOption[] = [
 
   // Data & AI
   { id: "Database", label: "Database", category: "Data & AI", icon: <Database /> },
+  { id: "SiPrisma", label: "Prisma", category: "Data & AI", icon: <SiPrisma /> },
   { id: "SiPostgresql", label: "PostgreSQL / Neon", category: "Data & AI", icon: <SiPostgresql /> },
   { id: "SiMongodb", label: "MongoDB", category: "Data & AI", icon: <SiMongodb /> },
   { id: "SiPython", label: "Python", category: "Data & AI", icon: <SiPython /> },
@@ -155,6 +163,18 @@ export function renderDynamicIcon(
     case "nest":
     case "sinestjs":
       return <SiNestjs className={className} />;
+    case "zod":
+    case "sizod":
+      return <SiZod className={className} />;
+    case "prisma":
+    case "siprisma":
+      return <SiPrisma className={className} />;
+    case "postman":
+    case "sipostman":
+      return <SiPostman className={className} />;
+    case "hoppscotch":
+    case "sihoppscotch":
+      return <SiHoppscotch className={className} />;
     case "rocket":
       return <Rocket className={className} />;
     case "layers":

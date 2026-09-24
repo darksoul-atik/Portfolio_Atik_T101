@@ -85,6 +85,9 @@ export const skillGroups = [
       "Express.js",
       "FastAPI",
       "RESTful API Design",
+      "Zod",
+      "Postman",
+      "Hoppscotch",
       "JWT",
       "Firebase Auth",
       "System Design",
@@ -113,6 +116,7 @@ export const skillGroups = [
     skills: [
       "MongoDB",
       "PostgreSQL",
+      "Prisma",
       "SQLite3",
       "Oracle SQL",
       "Git",
