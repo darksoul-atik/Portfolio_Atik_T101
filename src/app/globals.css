@@ -3,10 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --color-ink: #050711;
-  --color-ink-rgb: 5 7 17;
-  --color-panel: rgba(255, 255, 255, 0.06);
-  --color-line: rgba(255, 255, 255, 0.12);
+  --color-ink: #121212;
+  --color-ink-rgb: 18 18 18;
+  --color-panel: rgba(255, 255, 255, 0.045);
+  --color-line: rgba(255, 255, 255, 0.10);
   --color-cyan-glow: #6de8ff;
   --color-cyan-glow-rgb: 109 232 255;
   --color-violet-glow: #a986ff;
@@ -67,23 +67,11 @@ a {
   .glass-card {
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--color-line);
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.115), rgba(255, 255, 255, 0.035)),
-      var(--color-panel);
-    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(22px);
-  }
-
-  .glass-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at top left, rgba(109, 232, 255, 0.16), transparent 32%),
-      radial-gradient(circle at bottom right, rgba(169, 134, 255, 0.15), transparent 30%);
-    opacity: 0.9;
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    background-color: rgba(255, 255, 255, 0.045) !important;
+    background-image: none !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
   }
 
   .glass-card > * {
@@ -103,7 +91,7 @@ a {
   .premium-border {
     border: 1px solid transparent;
     background:
-      linear-gradient(#080b18, #080b18) padding-box,
+      linear-gradient(#121212, #121212) padding-box,
       linear-gradient(135deg, rgba(109, 232, 255, 0.55), rgba(169, 134, 255, 0.35), rgba(255, 106, 213, 0.45)) border-box;
   }
 
@@ -144,20 +132,6 @@ a {
   transform-style: preserve-3d;
 }
 
-.project-card::after {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  z-index: 0;
-  border-radius: inherit;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 0%), rgba(109, 232, 255, 0.2), transparent 35%);
-  opacity: 0;
-  transition: opacity 220ms ease;
-}
-
-.project-card:hover::after {
-  opacity: 1;
-}
 
 .timeline-line {
   background: linear-gradient(to bottom, rgba(109, 232, 255, 0), rgba(109, 232, 255, 0.65), rgba(169, 134, 255, 0));

@@ -54,7 +54,10 @@ export function ContactForm() {
   };
 
   return (
-    <div id="contact-form" className="glass-card rounded-[2rem] p-6 sm:p-8">
+    <div
+      id="contact-form"
+      className="relative rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 sm:p-8 backdrop-blur-xl"
+    >
       <div className="mb-6">
         <h3 className="text-xl font-bold text-white sm:text-2xl">
           Send a Message

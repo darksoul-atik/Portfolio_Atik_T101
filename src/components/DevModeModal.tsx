@@ -10,9 +10,10 @@ import {
   RotateCcw,
   Check,
   AlertCircle,
-  FileText,
   Loader2,
+  Palette,
 } from "lucide-react";
+import { ThemeColorModal } from "@/components/ThemeColorModal";
 
 export function DevModeButtonAndModal() {
   const {
@@ -20,7 +21,11 @@ export function DevModeButtonAndModal() {
     setIsDevMode,
     isAuthModalOpen,
     setIsAuthModalOpen,
+    setIsColorModalOpen,
+    isDevVisible,
+    setIsDevVisible,
     resetToDefaults,
+    isSaving,
   } = usePortfolio();
 
   const [passcode, setPasscode] = useState("");
@@ -29,15 +34,45 @@ export function DevModeButtonAndModal() {
   const [cvSuccess, setCvSuccess] = useState(false);
   const cvInputRef = useRef<HTMLInputElement>(null);
 
-  const handleUnlock = (e: React.FormEvent) => {
+  const [isVerifying, setIsVerifying] = useState(false);
+
+  const handleUnlock = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (passcode.trim() === "6011020168") {
-      setIsDevMode(true);
-      setIsAuthModalOpen(false);
-      setPasscode("");
-      setError("");
-    } else {
-      setError("Incorrect passcode. Check the hint below.");
+    if (!passcode.trim()) return;
+
+    setIsVerifying(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/auth/verify-dev", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ passcode: passcode.trim() }),
+      });
+      const data = await res.json();
+      if (data.valid) {
+        setIsDevMode(true);
+        setIsDevVisible(true);
+        setIsAuthModalOpen(false);
+        setPasscode("");
+        setError("");
+      } else {
+        setError("Incorrect passcode.");
+      }
+    } catch {
+      // Fallback for offline/client check
+      const clientPasscode = process.env.NEXT_PUBLIC_DEV_PASSCODE;
+      if (clientPasscode && passcode.trim() === clientPasscode.trim()) {
+        setIsDevMode(true);
+        setIsDevVisible(true);
+        setIsAuthModalOpen(false);
+        setPasscode("");
+        setError("");
+      } else {
+        setError("Incorrect passcode.");
+      }
+    } finally {
+      setIsVerifying(false);
     }
   };
 
@@ -74,68 +109,99 @@ export function DevModeButtonAndModal() {
   return (
     <>
       {/* Floating fixed bottom-right button */}
-      <div className="fixed bottom-6 right-6 z-50 flex items-center gap-2">
-        {isDevMode && (
-          <div className="flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-950/80 px-3 py-1.5 text-xs font-mono font-bold text-amber-300 shadow-card backdrop-blur-xl animate-pulse">
-            <span>DEV MODE ACTIVE</span>
-            <button
-              type="button"
-              onClick={() => cvInputRef.current?.click()}
-              disabled={cvUploading}
-              className="flex items-center gap-1 rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 text-[11px] text-amber-200 transition hover:bg-amber-400/20"
-              title="Replace resume-atik-shahrear-ananto.pdf"
-            >
-              {cvUploading ? (
-                <Loader2 className="h-3 w-3 animate-spin" />
-              ) : cvSuccess ? (
-                <Check className="h-3 w-3 text-emerald-400" />
-              ) : (
-                <Upload className="h-3 w-3" />
-              )}
-              <span>Upload CV</span>
-            </button>
-            <input
-              type="file"
-              ref={cvInputRef}
-              onChange={handleCvUpload}
-              accept=".pdf,application/pdf"
-              className="hidden"
-            />
-            <button
-              type="button"
-              onClick={() => {
-                if (confirm("Reset all edits to original defaults?")) {
-                  resetToDefaults();
-                }
-              }}
-              className="flex items-center gap-1 rounded-full border border-white/20 bg-white/5 px-2 py-0.5 text-[11px] text-white/70 transition hover:bg-white/20 hover:text-white"
-              title="Reset all edits to defaults"
-            >
-              <RotateCcw className="h-3 w-3" />
-            </button>
-            <button
-              type="button"
-              onClick={() => setIsDevMode(false)}
-              className="rounded-full bg-amber-400/20 p-1 text-amber-200 transition hover:bg-amber-400/40"
-              title="Exit Dev Mode"
-            >
-              <X className="h-3 w-3" />
-            </button>
-          </div>
-        )}
+      {isDevVisible && (
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex items-center gap-2 max-w-[calc(100vw-2rem)]">
+          {isDevMode && (
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 rounded-2xl sm:rounded-full border border-amber-400/40 bg-amber-950/90 px-3 py-1.5 text-xs font-mono font-bold text-amber-300 shadow-card backdrop-blur-xl">
+              <span className="shrink-0 text-[11px] sm:text-xs">DEV MODE</span>
+              <span className="flex items-center gap-1 text-[10px] text-cyan-300 font-normal shrink-0">
+                {isSaving ? (
+                  <>
+                    <Loader2 className="h-2.5 w-2.5 animate-spin" /> Saving...
+                  </>
+                ) : (
+                  <span className="text-emerald-400 font-medium">● Neon Synced</span>
+                )}
+              </span>
 
-        {!isDevMode && (
-          <button
-            type="button"
-            onClick={() => setIsAuthModalOpen(true)}
-            className="group flex items-center gap-2 rounded-full border border-white/15 bg-ink/90 px-4 py-2 text-xs font-mono text-white/70 shadow-card backdrop-blur-xl transition hover:border-cyanGlow/50 hover:bg-cyanGlow/10 hover:text-white"
-            aria-label="Toggle Dev Mode"
-          >
-            <Wrench className="h-3.5 w-3.5 text-cyanGlow transition group-hover:rotate-45" />
-            <span>DevMode</span>
-          </button>
-        )}
-      </div>
+              {/* Color Mode Studio Button (strictly part of DevMode) */}
+              <button
+                type="button"
+                onClick={() => setIsColorModalOpen(true)}
+                className="flex items-center gap-1.5 rounded-full border border-purple-400/40 bg-purple-500/25 px-2.5 py-0.5 text-[11px] font-semibold text-purple-200 transition hover:bg-purple-500/40 hover:text-white"
+                title="Customize Portfolio Colors (A-Z & JSON Theme Studio)"
+              >
+                <Palette className="h-3 w-3 text-purple-300" />
+                <span>Color Mode</span>
+              </button>
+
+              {/* Upload CV button */}
+              <button
+                type="button"
+                onClick={() => cvInputRef.current?.click()}
+                disabled={cvUploading}
+                className="flex items-center gap-1 rounded-full border border-amber-400/30 bg-amber-400/10 px-2 py-0.5 text-[11px] text-amber-200 transition hover:bg-amber-400/20"
+                title="Replace resume-atik-shahrear-ananto.pdf"
+              >
+                {cvUploading ? (
+                  <Loader2 className="h-3 w-3 animate-spin" />
+                ) : cvSuccess ? (
+                  <Check className="h-3 w-3 text-emerald-400" />
+                ) : (
+                  <Upload className="h-3 w-3" />
+                )}
+                <span>Upload CV</span>
+              </button>
+              <input
+                type="file"
+                ref={cvInputRef}
+                onChange={handleCvUpload}
+                accept=".pdf,application/pdf"
+                className="hidden"
+              />
+
+              {/* Reset Defaults button */}
+              <button
+                type="button"
+                onClick={async () => {
+                  if (confirm("Reset all edits to original defaults in Neon DB?")) {
+                    await resetToDefaults();
+                  }
+                }}
+                className="flex items-center gap-1 rounded-full border border-white/20 bg-white/5 px-2 py-0.5 text-[11px] text-white/70 transition hover:bg-white/20 hover:text-white"
+                title="Reset all edits to defaults"
+              >
+                <RotateCcw className="h-3 w-3" />
+              </button>
+
+              {/* Exit Dev Mode */}
+              <button
+                type="button"
+                onClick={() => {
+                  setIsDevMode(false);
+                  setIsDevVisible(false);
+                }}
+                className="rounded-full bg-amber-400/20 p-1 text-amber-200 transition hover:bg-amber-400/40"
+                title="Exit Dev Mode"
+              >
+                <X className="h-3 w-3" />
+              </button>
+            </div>
+          )}
+
+          {!isDevMode && (
+            <button
+              type="button"
+              onClick={() => setIsAuthModalOpen(true)}
+              className="group flex items-center gap-2 rounded-full border border-white/15 bg-ink/90 px-4 py-2 text-xs font-mono text-white/70 shadow-card backdrop-blur-xl transition hover:border-cyanGlow/50 hover:bg-cyanGlow/10 hover:text-white"
+              aria-label="Toggle Dev Mode"
+            >
+              <Wrench className="h-3.5 w-3.5 text-cyanGlow transition group-hover:rotate-45" />
+              <span>DevMode</span>
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Auth Modal */}
       {isAuthModalOpen && (
@@ -145,6 +211,7 @@ export function DevModeButtonAndModal() {
               type="button"
               onClick={() => {
                 setIsAuthModalOpen(false);
+                setIsDevVisible(false);
                 setError("");
                 setPasscode("");
               }}
@@ -159,8 +226,9 @@ export function DevModeButtonAndModal() {
                 <KeyRound className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-white">Unlock Dev Mode</h3>
-                <p className="text-xs text-white/50">Session-only client editing</p>
+                <h3 className="text-base sm:text-lg font-bold text-white">
+                  Confirm your identity for editing Access.
+                </h3>
               </div>
             </div>
 
@@ -192,9 +260,6 @@ export function DevModeButtonAndModal() {
                   placeholder="Enter passcode..."
                   className="w-full rounded-xl border border-white/15 bg-white/[0.05] px-4 py-2.5 font-mono text-sm text-white placeholder-white/20 outline-none transition focus:border-cyanGlow/60 focus:ring-1 focus:ring-cyanGlow/60"
                 />
-                <p className="mt-2 text-xs font-mono text-cyanGlow/80">
-                  Hint: NID number
-                </p>
               </div>
 
               <div className="pt-2 flex items-center justify-end gap-3">
@@ -202,6 +267,7 @@ export function DevModeButtonAndModal() {
                   type="button"
                   onClick={() => {
                     setIsAuthModalOpen(false);
+                    setIsDevVisible(false);
                     setError("");
                     setPasscode("");
                   }}
@@ -211,15 +277,26 @@ export function DevModeButtonAndModal() {
                 </button>
                 <button
                   type="submit"
-                  className="rounded-full border border-cyanGlow/30 bg-cyanGlow/15 px-5 py-2 text-xs font-semibold text-cyan-100 shadow-glow transition hover:bg-cyanGlow/25"
+                  disabled={isVerifying}
+                  className="flex items-center gap-1.5 rounded-full border border-cyanGlow/30 bg-cyanGlow/15 px-5 py-2 text-xs font-semibold text-cyan-100 shadow-glow transition hover:bg-cyanGlow/25 disabled:opacity-50"
                 >
-                  Unlock Editing
+                  {isVerifying ? (
+                    <>
+                      <Loader2 className="h-3 w-3 animate-spin" />
+                      <span>Verifying...</span>
+                    </>
+                  ) : (
+                    <span>Unlock Editing</span>
+                  )}
                 </button>
               </div>
             </form>
           </div>
         </div>
       )}
+
+      {/* Theme & Color Studio Modal */}
+      <ThemeColorModal />
     </>
   );
 }

@@ -185,7 +185,7 @@ export function AnimatedBackground() {
 
       <div className="noise-layer opacity-25" />
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(255,255,255,0.035),transparent_26%),linear-gradient(to_bottom,rgba(1,4,9,0.08)_0%,rgba(1,4,9,0.62)_70%,var(--color-ink)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_15%,rgba(255,255,255,0.035),transparent_26%),linear-gradient(to_bottom,rgba(18,18,18,0.08)_0%,rgba(18,18,18,0.62)_70%,var(--color-ink)_100%)]" />
     </div>
   );
 }

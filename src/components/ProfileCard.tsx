@@ -46,8 +46,19 @@ interface ProfileCardProps {
   handle?: string;
   status?: string;
   contactText?: string;
+  bio?: string;
   showUserInfo?: boolean;
   onContactClick?: () => void;
+  isDevMode?: boolean;
+  onEditAvatar?: () => void;
+  onUpdate?: (updated: {
+    name?: string;
+    title?: string;
+    handle?: string;
+    status?: string;
+    bio?: string;
+    contactText?: string;
+  }) => void;
 }
 
 interface TiltEngine {
@@ -77,8 +88,12 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
   handle = 'javicodes',
   status = 'Online',
   contactText = 'Contact',
+  bio,
   showUserInfo = true,
-  onContactClick
+  onContactClick,
+  isDevMode = false,
+  onEditAvatar,
+  onUpdate,
 }) => {
   const wrapRef = useRef<HTMLDivElement>(null);
   const shellRef = useRef<HTMLDivElement>(null);
@@ -344,117 +359,252 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
             <div style={shineStyle} />
             <div style={glareStyle} />
 
-            {/* Avatar */}
-            <div className="overflow-visible"
-              style={{ mixBlendMode: 'luminosity', transform: 'translateZ(2px)', gridArea: '1 / -1', borderRadius: cardRadius, pointerEvents: 'none', backfaceVisibility: 'hidden' }}
+            {/* Avatar Image (Full Width & Full Height) */}
+            <div
+              className="overflow-hidden absolute inset-0 w-full h-full"
+              style={{
+                transform: "translateZ(2px)",
+                gridArea: "1 / -1",
+                borderRadius: cardRadius,
+                pointerEvents: "none",
+                backfaceVisibility: "hidden",
+              }}
             >
               <img
-                className="w-full absolute left-1/2 bottom-[-1px] will-change-transform transition-transform duration-[120ms] ease-out"
+                className="w-full h-full object-cover object-center absolute inset-0 will-change-transform transition-transform duration-[120ms] ease-out"
                 src={avatarUrl}
-                alt={`${name || 'User'} avatar`}
+                alt={`${name || "User"} avatar`}
                 loading="lazy"
                 style={{
-                  transformOrigin: '50% 100%',
-                  transform: 'translateX(calc(-50% + (var(--pointer-from-left) - 0.5) * 6px)) translateZ(0) scaleY(calc(1 + (var(--pointer-from-top) - 0.5) * 0.02)) scaleX(calc(1 + (var(--pointer-from-left) - 0.5) * 0.01))',
-                  borderRadius: cardRadius, backfaceVisibility: 'hidden'
+                  transformOrigin: "50% 50%",
+                  transform:
+                    "scale(1.04) translate3d(calc((var(--pointer-from-left) - 0.5) * 8px), calc((var(--pointer-from-top) - 0.5) * 8px), 0)",
+                  borderRadius: cardRadius,
+                  backfaceVisibility: "hidden",
                 }}
-                onError={e => { (e.target as HTMLImageElement).style.display = 'none'; }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = "none";
+                }}
               />
-              {showUserInfo && (
-                <div
-                  className="absolute z-[2] flex items-center justify-between backdrop-blur-[30px] border border-white/10 pointer-events-auto"
-                  style={{
-                    bottom: '20px', left: '20px', right: '20px',
-                    background: 'rgba(255,255,255,0.1)',
-                    borderRadius: 'calc(max(0px, 30px - 20px + 6px))',
-                    padding: '12px 14px'
-                  } as React.CSSProperties}
-                >
-                  <div className="flex items-center gap-3">
-                    <div className="rounded-full overflow-hidden border border-white/10 flex-shrink-0" style={{ width: '40px', height: '40px' }}>
-                      <img
-                        className="w-full h-full object-cover rounded-full"
-                        src={miniAvatarUrl || avatarUrl}
-                        alt={`${name || 'User'} mini avatar`}
-                        loading="lazy"
-                        style={{ display: 'block', gridArea: 'auto', borderRadius: '50%', pointerEvents: 'auto' }}
-                        onError={e => { const t = e.target as HTMLImageElement; t.style.opacity = '0.5'; t.src = avatarUrl ?? ''; }}
-                      />
-                    </div>
-                    <div className="flex flex-col items-start gap-1">
-                      <div className="text-xs font-medium text-white/90 leading-none">@{handle}</div>
-                      <div className="text-xs text-white/70 leading-none">{status}</div>
-                    </div>
+              {/* Protective shadow gradient to maintain top/bottom readability */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.08) 32%, rgba(0,0,0,0.18) 60%, rgba(0,0,0,0.85) 100%)",
+                  borderRadius: cardRadius,
+                }}
+              />
+            </div>
+
+            {/* Bottom User Info Bar */}
+            {showUserInfo && (
+              <div
+                className="absolute z-[10] flex items-center justify-between backdrop-blur-[30px] border border-white/10 pointer-events-auto"
+                style={{
+                  bottom: "20px",
+                  left: "20px",
+                  right: "20px",
+                  background: "rgba(0,0,0,0.45)",
+                  borderRadius: "calc(max(0px, 30px - 20px + 6px))",
+                  padding: "12px 14px",
+                  gridArea: "1 / -1",
+                  alignSelf: "end",
+                } as React.CSSProperties}
+              >
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`rounded-full overflow-hidden border border-white/10 flex-shrink-0 relative group ${
+                      isDevMode ? "cursor-pointer ring-2 ring-amber-400" : ""
+                    }`}
+                    style={{ width: "40px", height: "40px" }}
+                    onClick={() => {
+                      if (isDevMode && onEditAvatar) {
+                        onEditAvatar();
+                      }
+                    }}
+                    title={isDevMode ? "Click to change avatar image" : undefined}
+                  >
+                    <img
+                      className="w-full h-full object-cover rounded-full"
+                      src={miniAvatarUrl || avatarUrl}
+                      alt={`${name || "User"} mini avatar`}
+                      loading="lazy"
+                      style={{
+                        display: "block",
+                        gridArea: "auto",
+                        borderRadius: "50%",
+                        pointerEvents: "auto",
+                      }}
+                      onError={(e) => {
+                        const t = e.target as HTMLImageElement;
+                        t.style.opacity = "0.5";
+                        t.src = avatarUrl ?? "";
+                      }}
+                    />
+                    {isDevMode && (
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-[9px] font-bold text-amber-300">
+                        EDIT
+                      </div>
+                    )}
                   </div>
+                  <div className="flex flex-col items-start gap-1">
+                    {isDevMode && onUpdate ? (
+                      <>
+                        <input
+                          type="text"
+                          value={handle}
+                          onChange={(e) => onUpdate({ handle: e.target.value })}
+                          className="text-xs font-medium text-white/90 bg-white/10 border border-amber-400/50 rounded px-1 py-0.5 w-24 outline-none pointer-events-auto"
+                          placeholder="handle"
+                        />
+                        <input
+                          type="text"
+                          value={status}
+                          onChange={(e) => onUpdate({ status: e.target.value })}
+                          className="text-[10px] text-white/70 bg-white/10 border border-amber-400/50 rounded px-1 py-0.5 w-24 outline-none pointer-events-auto"
+                          placeholder="status"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <div className="text-xs font-medium text-white/90 leading-none">
+                          @{handle}
+                        </div>
+                        <div className="text-xs text-white/70 leading-none">
+                          {status}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+                {isDevMode && onUpdate ? (
+                  <input
+                    type="text"
+                    value={contactText}
+                    onChange={(e) => onUpdate({ contactText: e.target.value })}
+                    className="border border-amber-400/50 rounded-lg px-2 py-1 text-xs font-semibold text-white/90 bg-white/10 outline-none w-20 pointer-events-auto"
+                  />
+                ) : (
                   <button
                     className="border border-white/10 rounded-lg px-3 py-2 text-xs font-semibold text-white/90 cursor-pointer backdrop-blur-[10px] transition-all duration-200 ease-out hover:border-white/40 hover:-translate-y-px"
                     onClick={handleContactClick}
-                    style={{ pointerEvents: 'auto', display: 'block', gridArea: 'auto', borderRadius: '8px' }}
+                    style={{
+                      pointerEvents: "auto",
+                      display: "block",
+                      gridArea: "auto",
+                      borderRadius: "8px",
+                    }}
                     type="button"
-                    aria-label={`Contact ${name || 'user'}`}
+                    aria-label={`Contact ${name || "user"}`}
                   >
                     {contactText}
                   </button>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            )}
 
             {/* Name + Title */}
             <div
               className="max-h-full overflow-hidden text-center relative z-[5]"
               style={{
-                transform: 'translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px)',
-                mixBlendMode: 'normal', gridArea: '1 / -1', borderRadius: cardRadius, pointerEvents: 'none'
+                transform:
+                  "translate3d(calc(var(--pointer-from-left) * -6px + 3px), calc(var(--pointer-from-top) * -6px + 3px), 0.1px)",
+                mixBlendMode: "normal",
+                gridArea: "1 / -1",
+                borderRadius: cardRadius,
+                pointerEvents: isDevMode ? "auto" : "none",
               }}
             >
-
-
-             <div className="w-full absolute flex flex-col items-center px-4" style={{ top: '0.8em', display: 'flex', gridArea: 'auto' }}>
-  <h3
-    className="font-semibold m-0 text-center"
-    style={{
-      fontSize: 'min(3svh, 3.6em)',
-      backgroundImage: 'linear-gradient(to bottom, #fff, #6f6fbe)',
-      backgroundSize: '1em 1.5em',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text', WebkitBackgroundClip: 'text',
-      display: 'block', gridArea: 'auto', borderRadius: '0', pointerEvents: 'auto'
-    }}
-  >
-    {name}
-  </h3>
-  <p
-    className="font-semibold whitespace-nowrap mx-auto"
-    style={{
-      position: 'relative', top: '-4px',
-      fontSize: 'clamp(1.1rem, 2.5svh, 0.1rem)',
-      backgroundImage: 'linear-gradient(to bottom, #fff, #4a4ac0)',
-      backgroundSize: '1em 1.5em',
-      WebkitTextFillColor: 'transparent',
-      backgroundClip: 'text', WebkitBackgroundClip: 'text',
-      display: 'block', gridArea: 'auto', borderRadius: '0', pointerEvents: 'auto'
-    }}
-  >
-    {title}
-  </p>
-  <p
-    style={{
-     fontSize: 'clamp(0.7rem, 1.4svh, 0.9rem)',
-      color: 'rgba(255,255,255,0.55)',
-      textAlign: 'center',
-      lineHeight: '1.6',
-      marginTop: '6px',
-      padding: '0 8px',
-      display: 'block',
-      gridArea: 'auto',
-      borderRadius: '0',
-      pointerEvents: 'auto',
-      WebkitTextFillColor: 'rgba(255,255,255,0.55)',
-    }}
-  >
-    B.Sc. CSE @ East West University · Software Engineer at SugarClass Ltd Hong Kong · Focused on MERN, FastAPI, and agentic AI engineering workflows.
-  </p>
-</div>
+              <div
+                className="w-full absolute flex flex-col items-center px-4"
+                style={{ top: "0.8em", display: "flex", gridArea: "auto" }}
+              >
+                {isDevMode && onUpdate ? (
+                  <div className="w-full space-y-1 z-20 pointer-events-auto">
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => onUpdate({ name: e.target.value })}
+                      className="w-full text-center font-bold text-white bg-black/70 border border-amber-400/60 rounded px-2 py-0.5 text-sm outline-none"
+                      placeholder="Name"
+                    />
+                    <input
+                      type="text"
+                      value={title}
+                      onChange={(e) => onUpdate({ title: e.target.value })}
+                      className="w-full text-center text-xs font-semibold text-cyan-200 bg-black/70 border border-amber-400/60 rounded px-2 py-0.5 outline-none"
+                      placeholder="Title"
+                    />
+                    <textarea
+                      rows={3}
+                      value={bio || ""}
+                      onChange={(e) => onUpdate({ bio: e.target.value })}
+                      className="w-full text-center text-[11px] text-white/80 bg-black/70 border border-amber-400/60 rounded p-1 outline-none resize-none"
+                      placeholder="Bio description"
+                    />
+                  </div>
+                ) : (
+                  <>
+                    <h3
+                      className="font-semibold m-0 text-center"
+                      style={{
+                        fontSize: "min(3svh, 3.6em)",
+                        backgroundImage:
+                          "linear-gradient(to bottom, #fff, #6f6fbe)",
+                        backgroundSize: "1em 1.5em",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                        WebkitBackgroundClip: "text",
+                        display: "block",
+                        gridArea: "auto",
+                        borderRadius: "0",
+                        pointerEvents: "auto",
+                      }}
+                    >
+                      {name}
+                    </h3>
+                    <p
+                      className="font-semibold whitespace-nowrap mx-auto"
+                      style={{
+                        position: "relative",
+                        top: "-4px",
+                        fontSize: "clamp(1.1rem, 2.5svh, 0.1rem)",
+                        backgroundImage:
+                          "linear-gradient(to bottom, #fff, #4a4ac0)",
+                        backgroundSize: "1em 1.5em",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                        WebkitBackgroundClip: "text",
+                        display: "block",
+                        gridArea: "auto",
+                        borderRadius: "0",
+                        pointerEvents: "auto",
+                      }}
+                    >
+                      {title}
+                    </p>
+                    <p
+                      style={{
+                        fontSize: "clamp(0.7rem, 1.4svh, 0.9rem)",
+                        color: "rgba(255,255,255,0.55)",
+                        textAlign: "center",
+                        lineHeight: "1.6",
+                        marginTop: "6px",
+                        padding: "0 8px",
+                        display: "block",
+                        gridArea: "auto",
+                        borderRadius: "0",
+                        pointerEvents: "auto",
+                        WebkitTextFillColor: "rgba(255,255,255,0.55)",
+                      }}
+                    >
+                      {bio ||
+                        "B.Sc. CSE @ East West University · Software Engineer at SugarClass Ltd Hong Kong · Focused on MERN, FastAPI, and agentic AI engineering workflows."}
+                    </p>
+                  </>
+                )}
+              </div>
 
 
             </div>

@@ -234,13 +234,23 @@ export const projects = [
 
 export const experience = [
   {
-    role: "Trainee AI and Software Engineer",
-    org: "SugarClass Ltd. Hong Kong (Remote)",
-    period: "March 2026 - Present",
+    role: "Agentic Software Engineering Intern",
+    org: "6sense HQ Limited",
+    period: "September 2026 – Present",
+    mode: "Dhaka, Bangladesh",
+    details: [
+      "Develop real-world software using agentic workflows, leveraging coding agents, subagents, MCP, and context engineering to explore codebases, implement features, debug, refactor, and test applications.",
+      "Design and orchestrate AI-assisted development workflows while reviewing and validating agent-generated code across frontend, backend, APIs, databases, testing, Git/GitHub, CI/CD, and deployment.",
+    ],
+  },
+  {
+    role: "Former Trainee AI and Software Engineer",
+    org: "SugarClass Ltd. | Remote",
+    period: "May 2025 – June 2026",
     mode: "Remote",
     details: [
-      "Building full-stack web applications and AI-augmented developer tooling utilizing Claude Code, OpenCode, and OpenAI Codex.",
-      "Designing scalable API integrations and engineering workflows in a distributed, remote-first Git environment.",
+      "Worked with Agentic AI systems and AI-assisted tools including Claude Code, OpenCode, and OpenAI Codex to accelerate development workflows and improve engineering productivity.",
+      "Designed scalable system architecture and software development pipelines while collaborating in a remote-first team using Git-based workflows and version control practices.",
     ],
   },
   {
@@ -267,18 +277,107 @@ export const experience = [
 
 export const services = [
   {
+    id: "srv-1",
+    icon: "Rocket",
     title: "Performant Web Applications",
     description:
       "Modern, responsive web applications built with Next.js, React, TypeScript, and GSAP with smooth transitions and clean accessibility.",
   },
   {
+    id: "srv-2",
+    icon: "Layers3",
     title: "Full-Stack & API Development",
     description:
       "Secure authentication flows, RESTful APIs, relational/NoSQL databases, and robust server architecture using Node.js, Express, and FastAPI.",
   },
   {
+    id: "srv-3",
+    icon: "Sparkles",
     title: "AI & Automation Workflows",
     description:
       "Integrating applied machine learning pipelines, LLM utilities, and agentic development tools to accelerate delivery and automate workflows.",
   },
 ];
+
+export const header = {
+  logo: "/logo.png",
+  title: "Atik Shahrear",
+  hireMeText: "Hire me",
+  hireMeLink: "#contact",
+};
+
+export const hero = {
+  headline: "Building high-performance web products with clean architecture.",
+  highlightWord: "web products",
+  subheadline:
+    "Computer Science and Engineering graduate specialized in full-stack MERN engineering, scalable RESTful APIs, robust authentication, and AI-accelerated development workflows.",
+  availabilityBadge: "Available for Software Engineering & Full-Stack roles",
+  viewProjectsText: "View projects",
+  downloadCvText: "Download CV",
+  contactMeText: "Contact me",
+  chips: [
+    { id: "chip-1", icon: "Code2", text: "Full Stack Focus" },
+    { id: "chip-2", icon: "Sparkles", text: "Agentic AI" },
+    { id: "chip-3", icon: "BriefcaseBusiness", text: "Open to work" },
+    { id: "chip-4", icon: "GraduationCap", text: "Data Science & ML" },
+  ],
+  codeSnippet: {
+    fileName: "developer.ts",
+    name: "Atik Shahrear",
+    focus: ["Full-Stack", "AI-Assisted Dev"],
+    currentRole: "Software Engineer",
+    myPhotoPrompt: "Hover to reveal my face",
+  },
+};
+
+export const aboutCards = [
+  {
+    id: "about-1",
+    icon: "Code2",
+    title: "Frontend Architecture",
+    description:
+      "React, TypeScript, Tailwind CSS, TanStack Query, and GSAP for modular, accessible interfaces.",
+  },
+  {
+    id: "about-2",
+    icon: "Layers3",
+    title: "Backend & Systems",
+    description:
+      "Node.js, Express, FastAPI, JWT & Firebase authentication, RESTful APIs, and database persistence.",
+  },
+  {
+    id: "about-3",
+    icon: "Boxes",
+    title: "Data Science & ML",
+    description:
+      "NumPy, Pandas, TensorFlow, computer vision modeling, regression, classification, and statistical analysis.",
+  },
+  {
+    id: "about-4",
+    icon: "Sparkles",
+    title: "Agentic Workflows",
+    description:
+      "Applied usage of Claude Code, OpenCode, Codex, and agentic workflows to increase engineering velocity.",
+  },
+];
+
+export const profileCardExtras = {
+  avatarUrl: "/avatar.png",
+  name: "Atik Shahrear Ananto",
+  title: "Software Engineer · Full-Stack & AI",
+  handle: "Atik Shahrear Ananto",
+  status: "Open to opportunities",
+  contactText: "Contact Me",
+  bio: "B.Sc. CSE @ East West University · Software Engineer at SugarClass Ltd Hong Kong · Focused on MERN, FastAPI, and agentic AI engineering workflows.",
+};
+
+export const contactSection = {
+  eyebrow: "Contact / Communication",
+  title: "Let's build high-performance web products together.",
+  description:
+    "I am available for software engineering roles, full-stack engineering, and technical collaborations. Use the contact form or verified communication channels below.",
+  emailLabel: "Direct Email",
+  phoneLabel: "Phone",
+  whatsappLabel: "WhatsApp",
+  locationLabel: "Location",
+};
