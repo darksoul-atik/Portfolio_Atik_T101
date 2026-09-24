@@ -205,8 +205,8 @@ export function DevModeButtonAndModal() {
 
       {/* Auth Modal */}
       {isAuthModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
-          <div className="relative w-full max-w-md rounded-[2rem] border border-white/15 bg-[#0b0f19] p-6 sm:p-8 shadow-card">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 xs:p-4 bg-black/75 backdrop-blur-md">
+          <div className="relative w-full max-w-md rounded-[1.75rem] xs:rounded-[2rem] border border-white/15 bg-[#0b0f19] p-5 xs:p-6 sm:p-8 shadow-card">
             <button
               type="button"
               onClick={() => {

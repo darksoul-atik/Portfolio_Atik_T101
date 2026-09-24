@@ -569,7 +569,7 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                       style={{
                         position: "relative",
                         top: "-4px",
-                        fontSize: "clamp(1.1rem, 2.5svh, 0.1rem)",
+                        fontSize: "clamp(0.75rem, 2.2svh, 1rem)",
                         backgroundImage:
                           "linear-gradient(to bottom, #fff, #4a4ac0)",
                         backgroundSize: "1em 1.5em",
@@ -586,17 +586,17 @@ const ProfileCardComponent: React.FC<ProfileCardProps> = ({
                     </p>
                     <p
                       style={{
-                        fontSize: "clamp(0.7rem, 1.4svh, 0.9rem)",
-                        color: "rgba(255,255,255,0.55)",
+                        fontSize: "clamp(0.65rem, 1.4svh, 0.82rem)",
+                        color: "rgba(255,255,255,0.7)",
                         textAlign: "center",
-                        lineHeight: "1.6",
-                        marginTop: "6px",
-                        padding: "0 8px",
+                        lineHeight: "1.5",
+                        marginTop: "4px",
+                        padding: "0 10px",
                         display: "block",
                         gridArea: "auto",
                         borderRadius: "0",
                         pointerEvents: "auto",
-                        WebkitTextFillColor: "rgba(255,255,255,0.55)",
+                        WebkitTextFillColor: "rgba(255,255,255,0.7)",
                       }}
                     >
                       {bio ||

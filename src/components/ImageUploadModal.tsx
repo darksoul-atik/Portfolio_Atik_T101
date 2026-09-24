@@ -74,8 +74,8 @@ export function ImageUploadModal({
   ];
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-      <div className="relative w-full max-w-md rounded-[2rem] border border-cyanGlow/30 bg-[#0c1220] p-6 shadow-card max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 xs:p-4 bg-black/80 backdrop-blur-md">
+      <div className="relative w-full max-w-md rounded-[1.5rem] xs:rounded-[2rem] border border-cyanGlow/30 bg-[#0c1220] p-4 xs:p-6 shadow-card max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-white/10">
           <div className="flex items-center gap-2.5">

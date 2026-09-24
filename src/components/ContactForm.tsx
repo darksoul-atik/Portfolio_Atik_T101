@@ -56,13 +56,13 @@ export function ContactForm() {
   return (
     <div
       id="contact-form"
-      className="relative rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 sm:p-8 backdrop-blur-xl"
+      className="relative rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-white/[0.045] p-4 xs:p-6 sm:p-8 backdrop-blur-xl"
     >
-      <div className="mb-6">
-        <h3 className="text-xl font-bold text-white sm:text-2xl">
+      <div className="mb-5 sm:mb-6">
+        <h3 className="text-lg xs:text-xl font-bold text-white sm:text-2xl">
           Send a Message
         </h3>
-        <p className="mt-1 text-sm text-white/60">
+        <p className="mt-1 text-xs xs:text-sm text-white/60">
           Have an opening, internship, or project inquiry? Fill out the form below.
         </p>
       </div>

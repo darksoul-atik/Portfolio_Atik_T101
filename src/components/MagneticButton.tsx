@@ -40,7 +40,7 @@ export function MagneticButton({ href, children, variant = "primary", className 
       href={href}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
-      className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full border px-6 py-3 text-sm font-semibold transition-all duration-300 ${variantClass} ${className}`}
+      className={`group relative inline-flex items-center justify-center overflow-hidden rounded-full border px-4 xs:px-6 py-2.5 xs:py-3 text-xs xs:text-sm font-semibold transition-all duration-300 ${variantClass} ${className}`}
       {...props}
     >
       <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-700 group-hover:translate-x-full" />

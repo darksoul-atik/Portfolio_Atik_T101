@@ -81,13 +81,13 @@ export function SectionHeader({
         </div>
       ) : (
         <>
-          <p className="mb-4 font-mono text-xs uppercase tracking-[0.35em] text-slate-400">
+          <p className="mb-3 sm:mb-4 font-mono text-[11px] xs:text-xs uppercase tracking-[0.22em] xs:tracking-[0.35em] text-slate-400">
             {eyebrow}
           </p>
-          <h2 className="text-balance text-3xl font-black tracking-tight text-white md:text-5xl">
+          <h2 className="text-balance text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white leading-tight">
             {title}
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-pretty text-sm leading-7 text-slate-400 md:text-base">
+          <p className="mx-auto mt-4 sm:mt-5 max-w-2xl text-pretty text-xs xs:text-sm leading-6 xs:leading-7 text-slate-400 md:text-base md:leading-8">
             {description}
           </p>
         </>

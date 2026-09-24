@@ -228,28 +228,28 @@ export function ThemeColorModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-5 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative flex flex-col w-full max-w-5xl h-[92vh] max-h-[880px] rounded-[2rem] border border-white/15 bg-[#0b0f19] shadow-2xl text-white overflow-hidden">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-2.5 sm:p-5 bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative flex flex-col w-full max-w-5xl h-[92vh] max-h-[880px] rounded-[1.75rem] xs:rounded-[2rem] border border-white/15 bg-[#0b0f19] shadow-2xl text-white overflow-hidden">
         {/* Top Header Bar */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02]">
-          <div className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-2xl border border-cyanGlow/40 bg-cyanGlow/10 text-cyanGlow shadow-glow">
-              <Palette className="h-5 w-5" />
+        <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-white/10 bg-white/[0.02]">
+          <div className="flex items-center gap-2.5 sm:gap-3 min-w-0">
+            <div className="grid h-9 w-9 sm:h-10 sm:w-10 shrink-0 place-items-center rounded-xl sm:rounded-2xl border border-cyanGlow/40 bg-cyanGlow/10 text-cyanGlow shadow-glow">
+              <Palette className="h-4 w-4 sm:h-5 sm:w-5" />
             </div>
-            <div>
-              <h2 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-                Portfolio Color Studio
-                <span className="rounded-full bg-cyanGlow/15 border border-cyanGlow/30 px-2 py-0.5 text-[10px] font-mono text-cyan-200">
-                  A to Z
+            <div className="min-w-0">
+              <h2 className="text-sm sm:text-lg font-bold text-white flex items-center gap-1.5 sm:gap-2 truncate">
+                <span>Color Studio</span>
+                <span className="rounded-full bg-cyanGlow/15 border border-cyanGlow/30 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-mono text-cyan-200">
+                  A-Z
                 </span>
               </h2>
-              <p className="text-xs text-white/50">
-                Change element colors one-by-one or upload JSON (all at once or multiple)
+              <p className="text-[10px] sm:text-xs text-white/50 truncate">
+                Change element colors or upload JSON theme
               </p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1 sm:gap-2 shrink-0">
             <button
               type="button"
               onClick={() => {
@@ -267,7 +267,7 @@ export function ThemeColorModal() {
             <button
               type="button"
               onClick={() => setIsColorModalOpen(false)}
-              className="rounded-full p-2 text-white/50 transition hover:bg-white/10 hover:text-white"
+              className="rounded-full p-1.5 sm:p-2 text-white/50 transition hover:bg-white/10 hover:text-white"
               aria-label="Close"
             >
               <X className="h-5 w-5" />
@@ -276,20 +276,20 @@ export function ThemeColorModal() {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.015] px-6 py-2.5">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 bg-white/[0.015] px-3 sm:px-6 py-2">
+          <div className="flex items-center gap-1.5 sm:gap-2 w-full sm:w-auto">
             <button
               type="button"
               onClick={() => setActiveTab("manual")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs font-semibold transition ${
                 activeTab === "manual"
                   ? "bg-cyanGlow/20 text-cyan-200 border border-cyanGlow/40 shadow-glow"
                   : "text-white/60 hover:bg-white/5 hover:text-white"
               }`}
             >
-              <Sliders className="h-3.5 w-3.5" />
-              <span>Manual Controls (A-Z)</span>
-              <span className="rounded-full bg-white/10 px-1.5 py-0.2 text-[10px] font-mono">
+              <Sliders className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+              <span>Manual Controls</span>
+              <span className="rounded-full bg-white/10 px-1.5 py-0.2 text-[9px] font-mono">
                 {THEME_COLOR_ELEMENTS.length}
               </span>
             </button>
@@ -297,14 +297,14 @@ export function ThemeColorModal() {
             <button
               type="button"
               onClick={() => setActiveTab("json")}
-              className={`flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition ${
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-1.5 rounded-xl px-3 py-1.5 sm:px-4 sm:py-2 text-[11px] sm:text-xs font-semibold transition ${
                 activeTab === "json"
                   ? "bg-cyanGlow/20 text-cyan-200 border border-cyanGlow/40 shadow-glow"
                   : "text-white/60 hover:bg-white/5 hover:text-white"
               }`}
             >
-              <FileCode className="h-3.5 w-3.5" />
-              <span>JSON Upload & Bulk Edit</span>
+              <FileCode className="h-3 w-3 sm:h-3.5 sm:w-3.5" />
+              <span>JSON Upload</span>
             </button>
           </div>
 

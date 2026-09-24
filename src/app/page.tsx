@@ -357,9 +357,9 @@ function PortfolioContent() {
       <section
         id="home"
         ref={heroRef}
-        className="section-shell relative flex min-h-screen flex-col items-center justify-center pb-20 pt-28 md:pb-28 md:pt-36"
+        className="section-shell relative flex min-h-screen flex-col items-center justify-center pb-16 pt-24 xs:pb-20 xs:pt-28 md:pb-28 md:pt-36"
       >
-        <div className="grid w-full items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] relative z-10">
+        <div className="grid w-full items-center gap-8 xs:gap-10 sm:gap-12 lg:grid-cols-[1.05fr_0.95fr] relative z-10">
           <div className="flex flex-col justify-center">
             {/* Headline */}
             {isDevMode ? (
@@ -368,12 +368,12 @@ function PortfolioContent() {
                   rows={3}
                   value={hero.headline}
                   onChange={(e) => updateHero({ headline: e.target.value })}
-                  className="w-full text-balance text-3xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight text-white bg-white/10 border-2 border-dashed border-amber-400/60 rounded-2xl p-3 outline-none"
+                  className="w-full text-balance text-2xl xs:text-3xl sm:text-5xl md:text-6xl font-black leading-tight tracking-tight text-white bg-white/10 border-2 border-dashed border-amber-400/60 rounded-2xl p-3 outline-none"
                   placeholder="Hero headline"
                 />
               </div>
             ) : (
-              <h1 className="hero-reveal max-w-5xl text-balance text-4xl font-black leading-[0.96] tracking-[-0.075em] text-white sm:text-6xl md:text-7xl xl:text-[6.2rem]">
+              <h1 className="hero-reveal max-w-5xl text-balance text-[2.1rem] xs:text-4xl sm:text-6xl md:text-7xl xl:text-[6.2rem] font-black leading-[1.02] xs:leading-[0.96] tracking-tight xs:tracking-[-0.075em] text-white">
                 {hero.headline}
               </h1>
             )}
@@ -384,17 +384,17 @@ function PortfolioContent() {
                 rows={3}
                 value={hero.subheadline || profile.subheadline}
                 onChange={(e) => updateHero({ subheadline: e.target.value })}
-                className="hero-reveal mt-4 w-full text-pretty text-sm sm:text-base leading-7 text-white/80 bg-white/10 border border-amber-400/50 rounded-xl p-2.5 outline-none"
+                className="hero-reveal mt-4 w-full text-pretty text-xs xs:text-sm sm:text-base leading-6 xs:leading-7 text-white/80 bg-white/10 border border-amber-400/50 rounded-xl p-2.5 outline-none"
                 placeholder="Hero subheadline"
               />
             ) : (
-              <p className="hero-reveal mt-7 max-w-2xl text-pretty text-base leading-8 text-white/70 md:text-lg">
+              <p className="hero-reveal mt-5 xs:mt-7 max-w-2xl text-pretty text-sm xs:text-base leading-7 xs:leading-8 text-white/70 md:text-lg">
                 {hero.subheadline || profile.subheadline}
               </p>
             )}
 
             {/* Action Buttons */}
-            <div className="hero-reveal mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="hero-reveal mt-7 xs:mt-9 flex flex-col xs:flex-row gap-3 sm:gap-4 xs:items-center w-full xs:w-auto">
               <MagneticButton href="#projects">
                 {isDevMode ? (
                   <input
@@ -498,11 +498,11 @@ function PortfolioContent() {
               </button>
             </div>
           )}
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-2.5 xs:gap-3 sm:grid-cols-4">
             {stats.map((item, index) => (
               <div
                 key={`${item.label}-${index}`}
-                className={`group relative rounded-3xl border border-white/10 bg-white/[0.045] p-4 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
+                className={`group relative rounded-2xl xs:rounded-3xl border border-white/10 bg-white/[0.045] p-3 xs:p-4 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
                   isDevMode ? "border-amber-400/40 border-dashed" : ""
                 }`}
               >
@@ -525,7 +525,7 @@ function PortfolioContent() {
                       onChange={(e) =>
                         updateStat(index, { value: e.target.value })
                       }
-                      className="w-full text-xl font-black text-white bg-white/10 rounded px-1 outline-none"
+                      className="w-full text-lg xs:text-xl font-black text-white bg-white/10 rounded px-1 outline-none"
                     />
                     <input
                       type="text"
@@ -533,15 +533,15 @@ function PortfolioContent() {
                       onChange={(e) =>
                         updateStat(index, { label: e.target.value })
                       }
-                      className="w-full text-[11px] text-white/70 bg-white/10 rounded px-1 outline-none"
+                      className="w-full text-[10px] xs:text-[11px] text-white/70 bg-white/10 rounded px-1 outline-none"
                     />
                   </div>
                 ) : (
                   <>
-                    <p className="text-2xl font-black text-white">
+                    <p className="text-lg xs:text-xl sm:text-2xl font-black text-white truncate">
                       {item.value}
                     </p>
-                    <p className="mt-1 text-xs leading-5 text-white/40">
+                    <p className="mt-0.5 xs:mt-1 text-[11px] xs:text-xs leading-4 xs:leading-5 text-white/40 truncate">
                       {item.label}
                     </p>
                   </>
@@ -553,16 +553,16 @@ function PortfolioContent() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="section-shell py-20 md:py-32">
+      <section id="about" className="section-shell py-16 sm:py-20 md:py-32">
         <SectionHeader
           eyebrow="About / Background"
           title="Software Engineer focused on full-stack architecture, APIs, and modern UI."
           description="Experienced in the React/Next.js ecosystem, Node.js and Python backends, database modeling, and AI-accelerated development workflows."
         />
 
-        <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="grid gap-5 xs:gap-6 lg:grid-cols-[0.95fr_1.05fr]">
           {/* Left: Profile Summary Card */}
-          <Reveal className="relative rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 sm:p-7 md:p-9 backdrop-blur-xl">
+          <Reveal className="relative rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 xs:p-6 sm:p-7 md:p-9 backdrop-blur-xl">
             {isDevMode && (
               <div className="absolute top-4 right-4">
                 <button
@@ -582,9 +582,9 @@ function PortfolioContent() {
               </div>
             )}
 
-            <div className="flex items-center gap-5">
+            <div className="flex items-center gap-3.5 xs:gap-5">
               <div
-                className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-cyanGlow/30 bg-cyanGlow/10 shadow-glow cursor-pointer group"
+                className="relative h-16 w-16 xs:h-20 xs:w-20 shrink-0 overflow-hidden rounded-xl xs:rounded-2xl border border-cyanGlow/30 bg-cyanGlow/10 shadow-glow cursor-pointer group"
                 onClick={() => {
                   if (isDevMode) {
                     openImagePicker(
@@ -616,7 +616,7 @@ function PortfolioContent() {
                       type="text"
                       value={profile.name}
                       onChange={(e) => updateProfile("name", e.target.value)}
-                      className="w-full text-lg font-bold text-white bg-white/10 border border-amber-400/50 rounded px-2 py-0.5 outline-none"
+                      className="w-full text-base xs:text-lg font-bold text-white bg-white/10 border border-amber-400/50 rounded px-2 py-0.5 outline-none"
                     />
                     <input
                       type="text"
@@ -627,10 +627,10 @@ function PortfolioContent() {
                   </div>
                 ) : (
                   <>
-                    <h3 className="text-xl font-bold text-white truncate">
+                    <h3 className="text-lg xs:text-xl font-bold text-white truncate">
                       {profile.name}
                     </h3>
-                    <p className="mt-1 text-sm text-white/50 truncate">
+                    <p className="mt-0.5 xs:mt-1 text-xs xs:text-sm text-white/50 truncate">
                       {profile.role}
                     </p>
                   </>
@@ -645,11 +645,11 @@ function PortfolioContent() {
                 onChange={(e) =>
                   updateProfileCardExtras({ bio: e.target.value })
                 }
-                className="mt-6 w-full text-sm leading-7 text-white/80 bg-white/10 border border-amber-400/50 rounded-xl p-3 outline-none"
+                className="mt-5 xs:mt-6 w-full text-xs xs:text-sm leading-6 xs:leading-7 text-white/80 bg-white/10 border border-amber-400/50 rounded-xl p-3 outline-none"
                 placeholder="About bio paragraph"
               />
             ) : (
-              <p className="mt-6 text-pretty text-base leading-8 text-white/60">
+              <p className="mt-5 xs:mt-6 text-pretty text-sm xs:text-base leading-7 xs:leading-8 text-white/60">
                 {profileCardExtras.bio ||
                   "I build web applications and scalable backends with emphasis on responsiveness, secure authentication, clean RESTful APIs, database integrity, and production-ready code."}
               </p>
@@ -716,11 +716,11 @@ function PortfolioContent() {
                 </button>
               </div>
             )}
-            <div className="grid gap-5 sm:grid-cols-2">
+            <div className="grid gap-4 xs:gap-5 sm:grid-cols-2">
               {aboutCards.map((card, index) => (
                 <Reveal
                   key={card.id || index}
-                  className={`about-highlight-card relative rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 sm:p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
+                  className={`about-highlight-card relative rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 xs:p-6 sm:p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
                     isDevMode ? "border-2 border-dashed border-amber-400/40" : ""
                   }`}
                   delay={index * 0.06}
@@ -738,14 +738,14 @@ function PortfolioContent() {
                           );
                         }
                       }}
-                      className={`grid h-12 w-12 place-items-center rounded-2xl border border-cyanGlow/25 bg-cyanGlow/10 text-cyanGlow shadow-glow ${
+                      className={`grid h-11 w-11 xs:h-12 xs:w-12 place-items-center rounded-xl xs:rounded-2xl border border-cyanGlow/25 bg-cyanGlow/10 text-cyanGlow shadow-glow ${
                         isDevMode
                           ? "cursor-pointer hover:border-amber-400 hover:bg-amber-400/20"
                           : ""
                       }`}
                       title={isDevMode ? "Click to change icon" : undefined}
                     >
-                      {renderDynamicIcon(card.icon, "h-5 w-5")}
+                      {renderDynamicIcon(card.icon, "h-4 w-4 xs:h-5 xs:w-5")}
                     </button>
 
                     {isDevMode && (
@@ -785,10 +785,10 @@ function PortfolioContent() {
                     </div>
                   ) : (
                     <>
-                      <h3 className="mt-6 text-xl font-bold text-white">
+                      <h3 className="mt-4 xs:mt-6 text-lg xs:text-xl font-bold text-white">
                         {card.title}
                       </h3>
-                      <p className="mt-3 text-sm leading-7 text-white/60">
+                      <p className="mt-2 xs:mt-3 text-xs xs:text-sm leading-6 xs:leading-7 text-white/60">
                         {card.description}
                       </p>
                     </>
@@ -801,7 +801,7 @@ function PortfolioContent() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="section-shell py-20 md:py-32">
+      <section id="skills" className="section-shell py-16 sm:py-20 md:py-32">
         <SectionHeader
           eyebrow="Skills / Tech Stack"
           title="Core technologies for full-stack engineering and data modeling."
@@ -820,7 +820,7 @@ function PortfolioContent() {
             fadeOut={true}
             fadeOutColor="var(--color-ink, #0b0f17)"
             ariaLabel="Technologies and framework stack"
-            className="my-6 md:my-10"
+            className="my-4 xs:my-6 md:my-10"
           />
         </Reveal>
 
@@ -837,12 +837,12 @@ function PortfolioContent() {
           </div>
         )}
 
-        <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-8 grid gap-4 xs:gap-5 md:grid-cols-2 xl:grid-cols-4">
           {skillGroups.map((group, index) => (
             <Reveal
               key={`${group.title}-${index}`}
               delay={index * 0.05}
-              className={`relative flex h-full flex-col rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
+              className={`relative flex h-full flex-col rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 xs:p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
                 isDevMode ? "border-2 border-dashed border-amber-400/40" : ""
               }`}
             >
@@ -872,18 +872,18 @@ function PortfolioContent() {
                       onChange={(e) =>
                         updateSkillGroup(index, { title: e.target.value })
                       }
-                      className="mt-3 w-full rounded border border-dashed border-amber-400/60 bg-white/10 px-2 py-1 text-lg font-bold text-white outline-none"
+                      className="mt-3 w-full rounded border border-dashed border-amber-400/60 bg-white/10 px-2 py-1 text-base xs:text-lg font-bold text-white outline-none"
                     />
                   ) : (
-                    <h3 className="mt-4 text-xl font-bold leading-snug text-white">
+                    <h3 className="mt-3 xs:mt-4 text-lg xs:text-xl font-bold leading-snug text-white">
                       {group.title}
                     </h3>
                   )}
                 </div>
 
                 {!isDevMode && (
-                  <div className="flex-shrink-0 rounded-2xl border border-white/10 bg-white/5 p-3 text-cyanGlow">
-                    <ShieldCheck className="h-5 w-5" />
+                  <div className="flex-shrink-0 rounded-2xl border border-white/10 bg-white/5 p-2.5 xs:p-3 text-cyanGlow">
+                    <ShieldCheck className="h-4 w-4 xs:h-5 xs:w-5" />
                   </div>
                 )}
               </div>
@@ -900,23 +900,23 @@ function PortfolioContent() {
                     className="w-full rounded border border-dashed border-amber-400/60 bg-white/10 p-2 text-xs text-white/70 outline-none"
                   />
                 ) : (
-                  <p className="text-sm leading-6 text-white/50">
+                  <p className="text-xs xs:text-sm leading-5 xs:leading-6 text-white/50">
                     {group.caption}
                   </p>
                 )}
               </div>
 
               {/* Skills Tags */}
-              <div className="mt-6 flex flex-wrap gap-2">
+              <div className="mt-6 flex flex-wrap gap-1.5 xs:gap-2">
                 {group.skills.map((skill, sIdx) => {
                   const Icon = skillIconMap[skill];
                   return (
                     <span
                       key={`${skill}-${sIdx}`}
-                      className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.055] px-3 py-1.5 text-xs text-white/60 transition-all duration-300 hover:scale-[1.05] hover:border-cyanGlow/40 hover:text-white"
+                      className="group flex items-center gap-1.5 xs:gap-2 rounded-full border border-white/10 bg-white/[0.055] px-2.5 xs:px-3 py-1 xs:py-1.5 text-[11px] xs:text-xs text-white/60 transition-all duration-300 hover:scale-[1.05] hover:border-cyanGlow/40 hover:text-white"
                     >
                       {Icon ? (
-                        <span className="text-base text-cyanGlow">{Icon}</span>
+                        <span className="text-sm xs:text-base text-cyanGlow">{Icon}</span>
                       ) : (
                         <span className="text-xs text-cyanGlow">
                           {renderDynamicIcon(skill, "h-3.5 w-3.5")}
@@ -964,7 +964,7 @@ function PortfolioContent() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="section-shell py-20 md:py-32">
+      <section id="projects" className="section-shell py-16 sm:py-20 md:py-32">
         <SectionHeader
           eyebrow="Projects / Work"
           title="Featured full-stack applications and open-source tooling."
@@ -985,7 +985,7 @@ function PortfolioContent() {
         )}
 
         {/* Project Grid */}
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 xs:mt-10 grid grid-cols-1 gap-5 xs:gap-6 md:grid-cols-2 xl:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard
               key={`${project.title}-${index}`}
@@ -1007,12 +1007,12 @@ function PortfolioContent() {
         </div>
 
         {/* Direct GitHub Link */}
-        <div className="mt-14 flex justify-center">
+        <div className="mt-10 xs:mt-14 flex justify-center px-4">
           <Link
             href={profile.github}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-6 py-3 text-sm text-white/70 shadow-glow backdrop-blur-xl transition hover:border-cyanGlow/40 hover:bg-cyanGlow/10 hover:text-white"
+            className="flex items-center text-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-5 xs:px-6 py-2.5 xs:py-3 text-xs xs:text-sm text-white/70 shadow-glow backdrop-blur-xl transition hover:border-cyanGlow/40 hover:bg-cyanGlow/10 hover:text-white"
           >
             <span>Explore all repositories on GitHub</span>
             <ArrowRight className="h-4 w-4" />
@@ -1021,7 +1021,7 @@ function PortfolioContent() {
       </section>
 
       {/* Research Section */}
-      <section id="research" className="section-shell py-20 md:py-32">
+      <section id="research" className="section-shell py-16 sm:py-20 md:py-32">
         <SectionHeader
           eyebrow="Research / Publications"
           title="Peer-reviewed research and applied machine learning investigations."
@@ -1041,18 +1041,18 @@ function PortfolioContent() {
           </div>
         )}
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-5 xs:gap-6 md:grid-cols-2">
           {research.map((item, index) => (
             <Reveal
               key={`${item.title}-${index}`}
               delay={index * 0.07}
             >
               <div
-                className={`relative flex h-full flex-col gap-5 rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 sm:p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
+                className={`relative flex h-full flex-col gap-4 xs:gap-5 rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 xs:p-6 sm:p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
                   isDevMode ? "border-2 border-dashed border-amber-400/40" : ""
                 }`}
               >
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-wrap items-center justify-between gap-2.5 xs:gap-4">
                   {isDevMode ? (
                     <input
                       type="text"
@@ -1063,7 +1063,7 @@ function PortfolioContent() {
                       className="rounded-full border border-cyanGlow/25 bg-cyanGlow/10 px-3 py-1 text-xs font-semibold text-cyan-100 outline-none w-36"
                     />
                   ) : (
-                    <span className="rounded-full border border-cyanGlow/25 bg-cyanGlow/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+                    <span className="rounded-full border border-cyanGlow/25 bg-cyanGlow/10 px-2.5 xs:px-3 py-1 text-[11px] xs:text-xs font-semibold text-cyan-100">
                       {item.type}
                     </span>
                   )}
@@ -1080,7 +1080,7 @@ function PortfolioContent() {
                       />
                     ) : (
                       <span
-                        className={`rounded-full border px-3 py-1 text-xs font-semibold ${
+                        className={`rounded-full border px-2.5 xs:px-3 py-1 text-[11px] xs:text-xs font-semibold ${
                           item.status === "Accepted"
                             ? "border-emerald-400/25 bg-emerald-400/10 text-emerald-300"
                             : "border-sky-400/25 bg-sky-400/10 text-sky-300"
@@ -1114,7 +1114,7 @@ function PortfolioContent() {
                       className="w-full rounded border border-dashed border-amber-400/60 bg-white/10 p-2 text-base font-bold text-white outline-none"
                     />
                   ) : (
-                    <h3 className="text-xl font-black tracking-tight text-white leading-snug">
+                    <h3 className="text-lg xs:text-xl font-black tracking-tight text-white leading-snug">
                       {item.title}
                     </h3>
                   )}
@@ -1129,13 +1129,13 @@ function PortfolioContent() {
                       className="mt-2 w-full rounded border border-dashed border-amber-400/60 bg-white/10 p-1 text-xs text-cyanGlow outline-none"
                     />
                   ) : (
-                    <p className="mt-2 text-sm text-cyanGlow/80 font-medium">
+                    <p className="mt-1.5 xs:mt-2 text-xs xs:text-sm text-cyanGlow/80 font-medium">
                       {item.conference}
                     </p>
                   )}
                 </div>
 
-                <div className="grid gap-2 text-sm text-white/50">
+                <div className="grid gap-1.5 xs:gap-2 text-xs xs:text-sm text-white/50">
                   <p className="flex items-center gap-2">
                     <span className="text-white/30 shrink-0">Venue · </span>
                     {isDevMode ? (
@@ -1204,7 +1204,7 @@ function PortfolioContent() {
       </section>
 
       {/* Journey Section */}
-      <section id="journey" className="section-shell py-20 md:py-32">
+      <section id="journey" className="section-shell py-16 sm:py-20 md:py-32">
         <SectionHeader
           eyebrow="Journey / Experience & Education"
           title="Academic foundation, engineering practice, and community leadership."
@@ -1233,16 +1233,16 @@ function PortfolioContent() {
               delay={index * 0.05}
             >
               <div
-                className={`relative mb-7 grid gap-6 md:grid-cols-2 ${
+                className={`relative mb-6 xs:mb-7 grid gap-5 xs:gap-6 md:grid-cols-2 ${
                   index % 2 === 0 ? "" : "md:[&>div:first-child]:col-start-2"
                 }`}
               >
                 <div
-                  className={`relative rounded-[2rem] border border-white/10 bg-white/[0.045] p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
+                  className={`relative rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 xs:p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
                     index % 2 === 0 ? "md:mr-8" : "md:ml-8"
                   } ${isDevMode ? "border-2 border-dashed border-amber-400/40" : ""}`}
                 >
-                  <div className="mb-5 flex items-center justify-between gap-4">
+                  <div className="mb-4 xs:mb-5 flex flex-wrap items-center justify-between gap-2.5 xs:gap-4">
                     {isDevMode ? (
                       <input
                         type="text"
@@ -1253,7 +1253,7 @@ function PortfolioContent() {
                         className="rounded-full border border-cyanGlow/25 bg-cyanGlow/10 px-3 py-1 text-xs font-semibold text-cyan-100 outline-none w-36"
                       />
                     ) : (
-                      <span className="rounded-full border border-cyanGlow/25 bg-cyanGlow/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+                      <span className="rounded-full border border-cyanGlow/25 bg-cyanGlow/10 px-2.5 xs:px-3 py-1 text-[11px] xs:text-xs font-semibold text-cyan-100">
                         {item.period}
                       </span>
                     )}
@@ -1269,7 +1269,7 @@ function PortfolioContent() {
                           className="text-xs text-white/70 bg-white/10 border border-amber-400/40 rounded px-2 py-0.5 outline-none w-28 text-center"
                         />
                       ) : (
-                        <span className="text-xs text-white/40">{item.mode}</span>
+                        <span className="text-[11px] xs:text-xs text-white/40">{item.mode}</span>
                       )}
 
                       {isDevMode && (
@@ -1306,17 +1306,17 @@ function PortfolioContent() {
                     </div>
                   ) : (
                     <div>
-                      <h3 className="text-xl font-bold text-white">
+                      <h3 className="text-lg xs:text-xl font-bold text-white">
                         {item.role}
                       </h3>
-                      <p className="mt-1 text-sm font-medium text-cyanGlow/80">
+                      <p className="mt-0.5 xs:mt-1 text-xs xs:text-sm font-medium text-cyanGlow/80">
                         {item.org}
                       </p>
                     </div>
                   )}
 
                   {/* Bullet points */}
-                  <ul className="mt-4 space-y-2 text-sm text-white/60">
+                  <ul className="mt-3 xs:mt-4 space-y-1.5 xs:space-y-2 text-xs xs:text-sm text-white/60">
                     {item.details.map((detail, dIdx) => (
                       <li key={dIdx} className="flex items-start gap-2">
                         <span className="text-cyanGlow mt-1">•</span>
@@ -1376,7 +1376,7 @@ function PortfolioContent() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="section-shell py-20 md:py-32">
+      <section id="services" className="section-shell py-16 sm:py-20 md:py-32">
         <SectionHeader
           eyebrow="Services / What I Build"
           title="Full-stack development, modern interfaces, and workflow integrations."
@@ -1396,11 +1396,11 @@ function PortfolioContent() {
           </div>
         )}
 
-        <div className="grid gap-5 md:grid-cols-3">
+        <div className="grid gap-4 xs:gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => (
             <Reveal
               key={`${service.title}-${index}`}
-              className={`relative rounded-[2rem] border border-white/10 bg-white/[0.045] p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
+              className={`relative rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-white/[0.045] p-5 xs:p-6 sm:p-7 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
                 isDevMode ? "border-2 border-dashed border-amber-400/40" : ""
               }`}
               delay={index * 0.06}
@@ -1418,14 +1418,14 @@ function PortfolioContent() {
                       );
                     }
                   }}
-                  className={`grid h-12 w-12 place-items-center rounded-2xl border border-cyanGlow/25 bg-cyanGlow/10 text-cyanGlow shadow-glow ${
+                  className={`grid h-11 w-11 xs:h-12 xs:w-12 place-items-center rounded-xl xs:rounded-2xl border border-cyanGlow/25 bg-cyanGlow/10 text-cyanGlow shadow-glow ${
                     isDevMode
                       ? "cursor-pointer hover:border-amber-400 hover:bg-amber-400/20"
                       : ""
                   }`}
                   title={isDevMode ? "Click to change icon" : undefined}
                 >
-                  {renderDynamicIcon(service.icon || "Rocket", "h-5 w-5")}
+                  {renderDynamicIcon(service.icon || "Rocket", "h-4 w-4 xs:h-5 xs:w-5")}
                 </button>
 
                 {isDevMode && (
@@ -1461,10 +1461,10 @@ function PortfolioContent() {
                 </div>
               ) : (
                 <>
-                  <h3 className="mt-6 text-xl font-bold text-white">
+                  <h3 className="mt-4 xs:mt-6 text-lg xs:text-xl font-bold text-white">
                     {service.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-7 text-white/60">
+                  <p className="mt-2 xs:mt-3 text-xs xs:text-sm leading-6 xs:leading-7 text-white/60">
                     {service.description}
                   </p>
                 </>
@@ -1477,11 +1477,11 @@ function PortfolioContent() {
       {/* Contact Section */}
       <section
         id="contact"
-        className="section-shell pb-14 pt-20 sm:pb-16 sm:pt-24 md:pb-20 md:pt-32"
+        className="section-shell pb-14 pt-16 sm:pb-16 sm:pt-24 md:pb-20 md:pt-32"
       >
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 bg-white/[0.045] p-5 sm:p-8 md:p-10 lg:p-14 backdrop-blur-xl">
-            <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] items-start">
+          <div className="relative overflow-hidden rounded-[1.75rem] xs:rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 bg-white/[0.045] p-4 xs:p-6 sm:p-8 md:p-10 lg:p-14 backdrop-blur-xl">
+            <div className="grid gap-8 xs:gap-10 lg:grid-cols-[1.05fr_0.95fr] items-start">
               {/* Left Column: Info & Obfuscated details */}
               <div className="min-w-0">
                 <p className="font-mono text-[10px] sm:text-xs uppercase tracking-[0.35em] text-cyanGlow">
@@ -1496,7 +1496,7 @@ function PortfolioContent() {
                       onChange={(e) =>
                         updateContactSection({ title: e.target.value })
                       }
-                      className="w-full text-2xl sm:text-4xl font-black text-white bg-white/10 border border-amber-400/60 rounded-xl p-2 outline-none"
+                      className="w-full text-xl xs:text-2xl sm:text-4xl font-black text-white bg-white/10 border border-amber-400/60 rounded-xl p-2 outline-none"
                     />
                     <textarea
                       rows={3}
@@ -1509,16 +1509,16 @@ function PortfolioContent() {
                   </div>
                 ) : (
                   <>
-                    <h2 className="mt-5 max-w-2xl text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+                    <h2 className="mt-4 xs:mt-5 max-w-2xl text-2xl xs:text-3xl font-black leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
                       {contactSection.title}
                     </h2>
-                    <p className="mt-5 max-w-xl text-sm leading-7 text-white/60 sm:text-base sm:leading-8">
+                    <p className="mt-3 xs:mt-5 max-w-xl text-xs xs:text-sm leading-6 xs:leading-7 text-white/60 sm:text-base sm:leading-8">
                       {contactSection.description}
                     </p>
                   </>
                 )}
 
-                <div className="mt-8 space-y-3 max-w-md">
+                <div className="mt-6 xs:mt-8 space-y-2.5 xs:space-y-3 max-w-md">
                   <ObfuscatedContact
                     type="email"
                     encodedValue={btoa(profile.email)}
@@ -1537,16 +1537,16 @@ function PortfolioContent() {
                     label={contactSection.whatsappLabel || "WhatsApp"}
                     icon={<MessageCircle className="h-4 w-4" />}
                   />
-                  <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.045] px-4 py-3">
+                  <div className="flex items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.045] px-3.5 xs:px-4 py-2.5 xs:py-3">
                     <div className="flex items-center gap-3">
                       <span className="text-cyanGlow">
                         <MapPin className="h-4 w-4" />
                       </span>
                       <div>
-                        <p className="text-xs uppercase tracking-wider text-white/40">
+                        <p className="text-[10px] xs:text-xs uppercase tracking-wider text-white/40">
                           {contactSection.locationLabel || "Location"}
                         </p>
-                        <p className="text-sm font-medium text-white/90">
+                        <p className="text-xs xs:text-sm font-medium text-white/90">
                           {profile.location}
                         </p>
                       </div>
@@ -1554,7 +1554,7 @@ function PortfolioContent() {
                   </div>
                 </div>
 
-                <div className="mt-8 flex flex-wrap gap-4">
+                <div className="mt-6 xs:mt-8 flex flex-col xs:flex-row gap-3 xs:gap-4">
                   <MagneticButton
                     href={profile.github}
                     variant="secondary"
@@ -1585,7 +1585,7 @@ function PortfolioContent() {
 
       {/* Footer */}
       <footer className="section-shell pb-10 relative z-20">
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 md:flex-row">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 xs:pt-8 text-xs xs:text-sm text-center md:text-left text-white/40 md:flex-row">
           <p>
             © 2026 {profile.name}. Built with Next.js, GSAP, and Tailwind CSS.
           </p>
@@ -1701,7 +1701,7 @@ function Header({
           ) : (
             <Link
               href="#home"
-              className="focus-ring hidden text-sm font-semibold text-white/90 sm:block"
+              className="focus-ring hidden text-sm font-semibold text-white/90 xs:block max-w-[140px] sm:max-w-none truncate"
             >
               {header.title}
             </Link>
@@ -1774,7 +1774,7 @@ function Header({
 
       {/* Mobile Navigation Drawer */}
       {mobileOpen && (
-        <div className="mx-auto mt-3 max-w-7xl rounded-[2rem] border border-white/10 bg-ink/95 p-4 shadow-card backdrop-blur-2xl md:hidden transition-all duration-300">
+        <div className="mx-auto mt-3 max-w-7xl rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-ink/95 p-3.5 xs:p-4 shadow-card backdrop-blur-2xl md:hidden transition-all duration-300 max-h-[calc(100vh-5.5rem)] overflow-y-auto">
           {[
             { label: "Home", href: "#home" },
             { label: "About", href: "#about" },
@@ -1789,7 +1789,7 @@ function Header({
               key={item.href}
               href={item.href}
               onClick={() => setMobileOpen(false)}
-              className="block rounded-2xl px-4 py-3 text-sm text-white/80 transition hover:bg-white/10 hover:text-white"
+              className="block rounded-2xl px-3.5 xs:px-4 py-2.5 xs:py-3 text-xs xs:text-sm text-white/80 transition hover:bg-white/10 hover:text-white"
             >
               {item.label}
             </Link>
@@ -1799,14 +1799,14 @@ function Header({
               href={profile.github}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-4 py-2.5 text-xs text-white"
+              className="flex items-center gap-2 rounded-xl bg-white/5 border border-white/10 px-3.5 xs:px-4 py-2.5 text-xs text-white"
             >
               <Github className="h-4 w-4" /> GitHub
             </Link>
             <Link
               href="#contact"
               onClick={() => setMobileOpen(false)}
-              className="flex-1 text-center rounded-xl bg-cyanGlow/20 border border-cyanGlow/40 py-2.5 text-sm font-semibold text-cyan-100"
+              className="flex-1 text-center rounded-xl bg-cyanGlow/20 border border-cyanGlow/40 py-2.5 text-xs xs:text-sm font-semibold text-cyan-100"
             >
               {header.hireMeText || "Hire me"}
             </Link>
@@ -1858,7 +1858,7 @@ function HeroVisual({
 
   return (
     <div
-      className="relative mx-auto aspect-square w-full max-w-[32rem] sm:max-w-[34rem] lg:max-w-none flex items-center justify-center"
+      className="relative mx-auto min-h-[380px] xs:min-h-[420px] sm:min-h-[460px] lg:min-h-0 aspect-auto lg:aspect-square w-full max-w-[32rem] sm:max-w-[34rem] lg:max-w-none flex items-center justify-center py-4 lg:py-0"
       style={{ perspective: "800px", perspectiveOrigin: "50% 50%" }}
     >
       {/* Orbits — hide when hovered */}
@@ -1900,14 +1900,14 @@ function HeroVisual({
       >
         {/* Code card */}
         <div
-          className={`hero-code-card rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-white/[0.045] p-3.5 sm:p-4 md:p-5 shadow-card backdrop-blur-2xl transition-all duration-300 ${
+          className={`hero-code-card rounded-[1.25rem] xs:rounded-[1.5rem] sm:rounded-[2rem] border border-white/10 bg-white/[0.045] p-3 xs:p-3.5 sm:p-4 md:p-5 shadow-card backdrop-blur-2xl transition-all duration-300 ${
             hovered
               ? "opacity-0 scale-95 pointer-events-none"
               : "opacity-100 scale-100 pointer-events-auto"
           } ${isDevMode ? "border-amber-400/50 border-dashed" : ""}`}
         >
           {/* Top bar */}
-          <div className="hero-code-topbar mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.045] px-3 py-2.5 sm:px-4 sm:py-3">
+          <div className="hero-code-topbar mb-3 xs:mb-4 flex items-center justify-between rounded-xl xs:rounded-2xl border border-white/10 bg-white/[0.045] px-2.5 xs:px-3 py-2 xs:py-2.5 sm:px-4 sm:py-3">
             <div className="flex gap-2">
               <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-pinkGlow" />
               <span className="h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-yellow-300" />
@@ -1931,7 +1931,7 @@ function HeroVisual({
           </div>
 
           {/* JavaScript Object Literal Snippet */}
-          <div className="space-y-2.5 sm:space-y-3 font-mono text-[11px] leading-5 sm:text-xs sm:leading-6 md:text-sm text-white/60 break-words">
+          <div className="space-y-2 xs:space-y-2.5 sm:space-y-3 font-mono text-[10px] xs:text-[11px] leading-[18px] xs:leading-5 sm:text-xs sm:leading-6 md:text-sm text-white/60 break-words">
             <p>
               <span className="code-keyword text-pinkGlow">const</span>{" "}
               <span className="code-text">developer =</span>{" "}
@@ -2024,7 +2024,7 @@ function HeroVisual({
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
         >
-          <div className="scale-[0.74] xs:scale-[0.8] sm:scale-[0.88] md:scale-95 lg:scale-100 max-w-full">
+          <div className="scale-[0.70] xs:scale-[0.78] sm:scale-[0.88] md:scale-95 lg:scale-100 max-w-full">
             <ProfileCard
               avatarUrl={profileCardExtras.avatarUrl || "/avatar.png"}
               name={profileCardExtras.name || profile.name}
@@ -2159,13 +2159,13 @@ function ProjectCard({
     <Reveal delay={index * 0.07}>
       <article
         onPointerMove={onPointerMove}
-        className={`project-card group relative h-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.045] p-4 sm:p-5 md:p-6 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
+        className={`project-card group relative h-full overflow-hidden rounded-[1.75rem] xs:rounded-[2rem] border border-white/10 bg-white/[0.045] p-4 xs:p-5 md:p-6 backdrop-blur-xl transition duration-500 hover:-translate-y-2 hover:border-cyanGlow/30 hover:bg-white/[0.07] ${
           isDevMode ? "border-2 border-dashed border-amber-400/40" : ""
         }`}
       >
         <div className="relative z-10 flex h-full flex-col">
           {/* Top Bar */}
-          <div className="mb-5 flex items-center justify-between gap-4">
+          <div className="mb-4 xs:mb-5 flex items-center justify-between gap-4">
             {isDevMode && onUpdate ? (
               <input
                 type="text"
@@ -2175,7 +2175,7 @@ function ProjectCard({
                 placeholder="Project type"
               />
             ) : (
-              <span className="rounded-full border border-white/10 bg-white/[0.055] px-3 py-1 text-[10px] sm:text-xs text-white/60">
+              <span className="rounded-full border border-white/10 bg-white/[0.055] px-2.5 xs:px-3 py-1 text-[10px] sm:text-xs text-white/60">
                 {project.type}
               </span>
             )}
@@ -2198,13 +2198,13 @@ function ProjectCard({
           </div>
 
           {/* Project Image */}
-          <div className="relative mb-6 overflow-hidden rounded-[1.5rem] border border-white/10 group/img">
+          <div className="relative mb-5 xs:mb-6 overflow-hidden rounded-[1.25rem] xs:rounded-[1.5rem] border border-white/10 group/img">
             <Image
               src={project.image}
               alt={project.title}
               width={1200}
               height={700}
-              className="h-[180px] sm:h-[220px] md:h-[240px] w-full object-cover transition duration-700 group-hover:scale-105"
+              className="h-[170px] xs:h-[190px] sm:h-[220px] md:h-[240px] w-full object-cover transition duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
 
@@ -2219,17 +2219,17 @@ function ProjectCard({
               </button>
             )}
 
-            <div className="absolute bottom-4 left-4 right-4">
+            <div className="absolute bottom-3.5 xs:bottom-4 left-3.5 xs:left-4 right-3.5 xs:right-4">
               {isDevMode && onUpdate ? (
                 <input
                   type="text"
                   value={project.title}
                   onChange={(e) => onUpdate({ title: e.target.value })}
-                  className="w-full rounded border border-dashed border-amber-400/60 bg-black/70 p-1 text-lg font-black text-white outline-none"
+                  className="w-full rounded border border-dashed border-amber-400/60 bg-black/70 p-1 text-base xs:text-lg font-black text-white outline-none"
                   placeholder="Project Title"
                 />
               ) : (
-                <h3 className="text-xl sm:text-2xl font-black tracking-tight text-white truncate">
+                <h3 className="text-lg xs:text-xl sm:text-2xl font-black tracking-tight text-white truncate">
                   {project.title}
                 </h3>
               )}
@@ -2243,7 +2243,7 @@ function ProjectCard({
                   placeholder="Project Label / Subtitle"
                 />
               ) : (
-                <p className="mt-1 text-xs sm:text-sm text-cyanGlow truncate">
+                <p className="mt-0.5 xs:mt-1 text-[11px] xs:text-xs sm:text-sm text-cyanGlow truncate">
                   {project.label}
                 </p>
               )}
@@ -2394,11 +2394,11 @@ function ProjectCard({
           )}
 
           {/* Action Buttons */}
-          <div className="mt-auto pt-7 flex flex-wrap gap-3">
+          <div className="mt-auto pt-6 xs:pt-7 flex flex-col xs:flex-row gap-2.5 sm:gap-3">
             <MagneticButton
               href={project.live}
               target="_blank"
-              className="justify-center flex-1 sm:flex-initial"
+              className="justify-center w-full xs:w-auto flex-1 sm:flex-initial"
             >
               Live Preview
             </MagneticButton>
@@ -2407,7 +2407,7 @@ function ProjectCard({
               href={project.github}
               target="_blank"
               variant="secondary"
-              className="justify-center flex-1 sm:flex-initial"
+              className="justify-center w-full xs:w-auto flex-1 sm:flex-initial"
             >
               GitHub Repo
             </MagneticButton>

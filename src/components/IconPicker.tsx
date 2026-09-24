@@ -235,13 +235,13 @@ export function IconPickerModal({
   });
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-      <div className="relative w-full max-w-lg rounded-[2rem] border border-cyanGlow/30 bg-[#0c1220] p-6 shadow-card max-h-[85vh] flex flex-col">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md">
+      <div className="relative w-full max-w-lg rounded-[1.75rem] xs:rounded-[2rem] border border-cyanGlow/30 bg-[#0c1220] p-4 xs:p-6 shadow-card max-h-[85vh] flex flex-col">
         {/* Header */}
-        <div className="flex items-center justify-between pb-4 border-b border-white/10">
+        <div className="flex items-center justify-between pb-3 xs:pb-4 border-b border-white/10">
           <div>
-            <h3 className="text-lg font-bold text-white">{title}</h3>
-            <p className="text-xs text-white/50">Select an icon to display</p>
+            <h3 className="text-base xs:text-lg font-bold text-white">{title}</h3>
+            <p className="text-[11px] xs:text-xs text-white/50">Select an icon to display</p>
           </div>
           <button
             type="button"
@@ -253,7 +253,7 @@ export function IconPickerModal({
         </div>
 
         {/* Search */}
-        <div className="mt-4">
+        <div className="mt-3 xs:mt-4">
           <div className="relative flex items-center">
             <Search className="absolute left-3.5 h-4 w-4 text-white/40" />
             <input
@@ -273,7 +273,7 @@ export function IconPickerModal({
               key={cat}
               type="button"
               onClick={() => setSelectedCategory(cat)}
-              className={`rounded-full px-3 py-1 text-[11px] font-semibold transition ${
+              className={`rounded-full px-2.5 xs:px-3 py-1 text-[10px] xs:text-[11px] font-semibold transition ${
                 selectedCategory === cat
                   ? "bg-cyanGlow text-black"
                   : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
@@ -285,7 +285,7 @@ export function IconPickerModal({
         </div>
 
         {/* Icons Grid */}
-        <div className="mt-4 overflow-y-auto flex-1 pr-1 grid grid-cols-4 sm:grid-cols-5 gap-2.5">
+        <div className="mt-4 overflow-y-auto flex-1 pr-1 grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 gap-2 xs:gap-2.5">
           {filtered.map((item) => {
             const isSelected =
               item.id.toLowerCase() === (selectedId || "").toLowerCase();
