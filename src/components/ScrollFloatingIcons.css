@@ -33,15 +33,16 @@
   pointer-events: none;
   overflow: hidden;
   z-index: 1;
-  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .scroll-floating-layer.is-idle {
   opacity: 0;
+  transition: opacity 2.2s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 .scroll-floating-layer.is-scrolling {
   opacity: 1;
+  transition: opacity 0.5s ease-out;
 }
 
 .scroll-floating-icon {
@@ -57,14 +58,6 @@
   align-items: center;
   justify-content: center;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
-}
-
-.scroll-floating-layer.is-idle .scroll-floating-icon {
-  animation-play-state: paused;
-}
-
-.scroll-floating-layer.is-scrolling .scroll-floating-icon {
-  animation-play-state: running;
 }
 
 @media (prefers-reduced-motion: reduce) {

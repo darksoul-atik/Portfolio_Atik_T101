@@ -349,10 +349,10 @@ export function ScrollFloatingIcons() {
         clearTimeout(scrollTimeoutRef.current);
       }
 
-      // Remains active for 1.2s after scrolling stops
+      // Remains active for 2.2s after scrolling stops before beginning smooth fadeout
       scrollTimeoutRef.current = setTimeout(() => {
         setIsScrolling(false);
-      }, 1200);
+      }, 2200);
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
