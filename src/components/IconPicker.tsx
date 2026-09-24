@@ -62,6 +62,7 @@ import {
   SiGraphql,
   SiHtml5,
   SiCss,
+  SiNestjs,
 } from "react-icons/si";
 
 export interface IconOption {
@@ -102,6 +103,7 @@ export const ICON_CATALOG: IconOption[] = [
 
   // Backend & Cloud
   { id: "SiNodedotjs", label: "Node.js", category: "Backend", icon: <SiNodedotjs /> },
+  { id: "SiNestjs", label: "NestJS", category: "Backend", icon: <SiNestjs /> },
   { id: "SiExpress", label: "Express.js", category: "Backend", icon: <SiExpress /> },
   { id: "SiFastapi", label: "FastAPI", category: "Backend", icon: <SiFastapi /> },
   { id: "Server", label: "Server Systems", category: "Backend", icon: <Server /> },
@@ -130,7 +132,11 @@ export function renderDynamicIcon(
 ): React.ReactNode {
   if (!iconId) return <Code2 className={className} />;
 
-  const match = ICON_CATALOG.find((item) => item.id.toLowerCase() === iconId.toLowerCase());
+  const match = ICON_CATALOG.find(
+    (item) =>
+      item.id.toLowerCase() === iconId.toLowerCase() ||
+      item.label.toLowerCase() === iconId.toLowerCase()
+  );
   if (match) {
     return React.cloneElement(match.icon as React.ReactElement<{ className?: string }>, {
       className,
@@ -139,6 +145,16 @@ export function renderDynamicIcon(
 
   // Common fallbacks
   switch (iconId.toLowerCase()) {
+    case "next.js":
+    case "nextjs":
+    case "next":
+    case "sinextdotjs":
+      return <SiNextdotjs className={className} />;
+    case "nest.js":
+    case "nestjs":
+    case "nest":
+    case "sinestjs":
+      return <SiNestjs className={className} />;
     case "rocket":
       return <Rocket className={className} />;
     case "layers":

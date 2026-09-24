@@ -65,6 +65,7 @@ export const skillGroups = [
     caption: "Responsive, accessible interfaces built for speed and maintainability.",
     skills: [
       "React.js",
+      "Next.js",
       "TypeScript",
       "TanStack Query",
       "GSAP",
@@ -80,6 +81,7 @@ export const skillGroups = [
     caption: "Secure authentication, RESTful services, and structured backend architecture.",
     skills: [
       "Node.js",
+      "Nest.js",
       "Express.js",
       "FastAPI",
       "RESTful API Design",

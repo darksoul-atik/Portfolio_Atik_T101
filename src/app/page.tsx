@@ -3,6 +3,8 @@
 import Image from "next/image";
 import {
   SiReact,
+  SiNextdotjs,
+  SiNestjs,
   SiTypescript,
   SiTailwindcss,
   SiNodedotjs,
@@ -20,6 +22,8 @@ import {
   SiHtml5,
   SiCss,
   SiAxios,
+  SiReactquery,
+  SiDaisyui,
 } from "react-icons/si";
 
 import { FaServer, FaDatabase, FaCloud, FaCode } from "react-icons/fa";
@@ -83,6 +87,10 @@ import { ImageUploadModal } from "@/components/ImageUploadModal";
 import { generateThemeCSS } from "@/data/themeColors";
 
 const skillIconMap: Record<string, React.ReactNode> = {
+  // Frontend
+  "Next.js": <SiNextdotjs />,
+  Nextjs: <SiNextdotjs />,
+  Next: <SiNextdotjs />,
   "React.js": <SiReact />,
   React: <SiReact />,
   TypeScript: <SiTypescript />,
@@ -91,9 +99,14 @@ const skillIconMap: Record<string, React.ReactNode> = {
   CSS3: <SiCss />,
   Axios: <SiAxios />,
   GSAP: <FaCode />,
-  "TanStack Query": <FaCode />,
-  DaisyUI: <FaCode />,
+  "TanStack Query": <SiReactquery />,
+  DaisyUI: <SiDaisyui />,
 
+  // Backend & APIs
+  "Nest.js": <SiNestjs />,
+  NestJS: <SiNestjs />,
+  Nestjs: <SiNestjs />,
+  Nest: <SiNestjs />,
   "Node.js": <SiNodedotjs />,
   "Express.js": <SiExpress />,
   FastAPI: <SiFastapi />,
@@ -102,6 +115,7 @@ const skillIconMap: Record<string, React.ReactNode> = {
   "Firebase Auth": <SiFirebase />,
   "System Design": <FaServer />,
 
+  // AI & Data Engineering
   Python: <SiPython />,
   NumPy: <FaDatabase />,
   Pandas: <FaDatabase />,
@@ -113,9 +127,12 @@ const skillIconMap: Record<string, React.ReactNode> = {
   "Claude Code": <TbBrandOpenai />,
   "OpenAI Codex": <TbBrandOpenai />,
   OpenCode: <TbBrandOpenai />,
+  AntiGravity: <Sparkles />,
 
+  // Database & Deployment
   MongoDB: <SiMongodb />,
   PostgreSQL: <SiPostgresql />,
+  NeonDB: <SiPostgresql />,
   SQLite3: <FaDatabase />,
   "Oracle SQL": <FaDatabase />,
   Git: <SiGit />,
